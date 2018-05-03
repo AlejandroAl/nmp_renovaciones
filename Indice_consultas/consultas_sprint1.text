@@ -1,0 +1,45 @@
+### Consultas elasticserch renovaciones y top up
+
+ 
+
+GET riesgo_transaccional/_search
+{
+    "query": {
+      "has_parent": {
+        "parent_type": "transaccion",
+        "query": {
+          "match": {
+            "idContrato": "106269443"
+          }
+        }
+      }
+    }, "aggs": {
+      "Total_top_up": {
+        "filter": {"term": {
+          "importe": "800.06"
+        }}
+      },"Total_renovacion" : {
+        "filter": {"term": {
+          "importe": "700.06"
+        }}
+      }
+    }
+}
+
+
+GET riesgo_transaccional/_search/template
+{
+  "source": {
+    "query": {
+      "has_parent": {
+        "parent_type": "transaccion",
+        "query": {
+          "match": {
+            "idContrato": "{{id_contrato_param}}"
+          }
+        }
+      }
+    }
+  },
+    "params": {"id_contrato_param":106269443}
+}
