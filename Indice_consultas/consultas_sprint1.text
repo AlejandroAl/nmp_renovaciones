@@ -105,3 +105,39 @@ GET riesgo_transaccional/_search/template
   },
     "params": {"id_contrato_param":106269443}
 }
+
+
+-----Historia 8 y 9
+
+
+POST renovacionestopup/_search/template
+{
+  "source": {
+  "query": {"match": {
+    "idCiente": "{{id_cliente}}"
+  }}, 
+  "script_fields": {
+    "NombreCompleto": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value"
+      }
+    },
+    "NumeroTelefonico": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_telefono_1.keyword'].value"
+      }
+    },
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['idCiente.keyword'].value"
+      }
+    }
+  }
+  },
+  "params":{
+    "id_cliente" : "346780"
+  }
+}
