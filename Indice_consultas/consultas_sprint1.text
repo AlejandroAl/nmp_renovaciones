@@ -1,19 +1,68 @@
+
 ### Consultas elasticserch renovaciones y top up
 
+### Primera consulta: Entrega el total de clientes que existen en una prospección
  
+GET renovacionestopup/_search/template
+{
+  "source": {
+    "query": {
+      "match": {
+        "idProspeccion": "{{id_prospeccion_param}}"
+      }
+    },
+    "aggs": {
+      "TotalProspeccion": {
+        "value_count": {
+          "field": "idCliente"
+        }
+      }
+    }
+  },
+  "params": {
+    "id_prospeccion_param": 789
+  }
+}
 
-GET riesgo_transaccional/_search
+
+
+GET renovacionestopup/_search/template
+{
+  "source": {
+    "query": {
+      "match": {
+        "idProspeccion": "{{id_prospeccion_param}}"
+      }
+    },
+    "aggs": {
+      "TotalProspeccion": {
+        "value_count": {
+          "field": "idCiente"
+        }
+      }
+    }
+  },
+  "params": {
+    "id_prospeccion_param": 123
+  }
+} 
+
+
+
+### Segunda consulta: Entrega el total de clientes que existen con el subproducto "Renovación" una prospección
+
+GET renovacionestopup/_search
 {
     "query": {
-      "has_parent": {
+     
         "parent_type": "transaccion",
         "query": {
           "match": {
             "idContrato": "106269443"
           }
         }
-      }
-    }, "aggs": {
+      }, 
+	"aggs": {
       "Total_top_up": {
         "filter": {"term": {
           "importe": "800.06"
@@ -25,6 +74,19 @@ GET riesgo_transaccional/_search
       }
     }
 }
+
+
+### Tercera  consulta: Entrega el total de clientes que existen con el subproducto "Top Up" una prospección
+
+
+
+
+
+
+
+
+
+
 
 
 GET riesgo_transaccional/_search/template
