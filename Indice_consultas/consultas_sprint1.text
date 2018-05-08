@@ -141,3 +141,88 @@ POST renovacionestopup/_search/template
     "id_cliente" : "346780"
   }
 }
+
+
+
+
+# Javi.- Consultas
+
+# query que obtiene el idCliente buscado por el idProspeccion
+
+GET /renovacionestopup/prospeccion/_search/template
+{
+  "source": {
+  "query": {
+    "match": {
+      "idProspeccion":"{{id_Prospeccion}}"
+    }
+  },
+  "script_fields": {
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+       "source": "doc['idCliente'].value"
+      }
+    }
+  }
+},
+    "params" : {
+        "id_Prospeccion" : 12
+    }
+}
+
+
+# query de una actualizacion por un solo cliente, los campos que se actualizan son : "idCampania","fecha_activacion_campania","estatus_campania","nombre_lista_marketing" por medio del "idCliente"
+
+POST renovacionestopup/_update_by_query/
+{
+  "script": {
+   "source": "ctx._source.id_campania = params.idCampania; ctx._source.fecha_activacion_campania = params.fecha_activacion_campania; ctx._source.estatus_campania = params.estatus_campania; ctx._source.nombre_lista_marketing = params.nombre_lista_marketing",
+        "lang": "painless",
+        "params" : {
+            "idCampania" : "12",
+            "fecha_activacion_campania":"2018-02-11",
+            "estatus_campania":"value1",
+            "nombre_lista_marketing": "value7"
+        }
+  },
+  "query": {
+    "match": {
+      "idCliente": 3202001
+    }
+  }
+}
+
+
+
+# query de una actualizacion de varios clientes almacendos en un array, los campos que se actualizan son: "idCampania","fecha_activacion_campania","estatus_campania","nombre_lista_marketing" por medio del "idCliente"
+
+POST renovacionestopup/_update_by_query/
+{
+  "script": {
+   "source": "ctx._source.id_campania = params.idCampania; ctx._source.fecha_activacion_campania = params.fecha_activacion_campania; ctx._source.estatus_campania = params.estatus_campania; ctx._source.nombre_lista_marketing = params.nombre_lista_marketing",
+        "lang": "painless",
+        "params" : {
+            "idCampania" : "12",
+            "fecha_activacion_campania":"2018-02-11",
+            "estatus_campania":"value1",
+            "nombre_lista_marketing": "value6"
+        }
+  },
+  "query": {
+        "bool" : {
+            "must" : {
+                "script" : {
+                    "script" : {
+                        "source" : "for(int i=0;i< params.idClienteArray.length; i++){if(params.idClienteArray[i] == doc['idCliente'].value ){return true;}}",
+                        "lang"   : "painless",
+                        "params" : {
+                            "idClienteArray":[3202003,3202002,3202001,3202005]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
