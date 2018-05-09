@@ -1,19 +1,68 @@
+
 ### Consultas elasticserch renovaciones y top up
 
+### Primera consulta: Entrega el total de clientes que existen en una prospección
  
+GET renovacionestopup/_search/template
+{
+  "source": {
+    "query": {
+      "match": {
+        "idProspeccion": "{{id_prospeccion_param}}"
+      }
+    },
+    "aggs": {
+      "TotalProspeccion": {
+        "value_count": {
+          "field": "idCliente"
+        }
+      }
+    }
+  },
+  "params": {
+    "id_prospeccion_param": 789
+  }
+}
 
-GET riesgo_transaccional/_search
+
+
+GET renovacionestopup/_search/template
+{
+  "source": {
+    "query": {
+      "match": {
+        "idProspeccion": "{{id_prospeccion_param}}"
+      }
+    },
+    "aggs": {
+      "TotalProspeccion": {
+        "value_count": {
+          "field": "idCiente"
+        }
+      }
+    }
+  },
+  "params": {
+    "id_prospeccion_param": 123
+  }
+} 
+
+
+
+### Segunda consulta: Entrega el total de clientes que existen con el subproducto "Renovación" una prospección
+
+GET renovacionestopup/_search
 {
     "query": {
-      "has_parent": {
+     
         "parent_type": "transaccion",
         "query": {
           "match": {
             "idContrato": "106269443"
           }
         }
-      }
-    }, "aggs": {
+      }, 
+	"aggs": {
       "Total_top_up": {
         "filter": {"term": {
           "importe": "800.06"
@@ -25,6 +74,19 @@ GET riesgo_transaccional/_search
       }
     }
 }
+
+
+### Tercera  consulta: Entrega el total de clientes que existen con el subproducto "Top Up" una prospección
+
+
+
+
+
+
+
+
+
+
 
 
 GET riesgo_transaccional/_search/template
@@ -83,6 +145,7 @@ POST renovacionestopup/_search/template
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -507,4 +570,86 @@ curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:924
 }'
 
 
+=======
+# Javi.- Consultas
+
+# query que obtiene el idCliente buscado por el idProspeccion
+
+GET /renovacionestopup/prospeccion/_search/template
+{
+  "source": {
+  "query": {
+    "match": {
+      "idProspeccion":"{{id_Prospeccion}}"
+    }
+  },
+  "script_fields": {
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+       "source": "doc['idCliente'].value"
+      }
+    }
+  }
+},
+    "params" : {
+        "id_Prospeccion" : 12
+    }
+}
+
+
+# query de una actualizacion por un solo cliente, los campos que se actualizan son : "idCampania","fecha_activacion_campania","estatus_campania","nombre_lista_marketing" por medio del "idCliente"
+
+POST renovacionestopup/_update_by_query/
+{
+  "script": {
+   "source": "ctx._source.id_campania = params.idCampania; ctx._source.fecha_activacion_campania = params.fecha_activacion_campania; ctx._source.estatus_campania = params.estatus_campania; ctx._source.nombre_lista_marketing = params.nombre_lista_marketing",
+        "lang": "painless",
+        "params" : {
+            "idCampania" : "12",
+            "fecha_activacion_campania":"2018-02-11",
+            "estatus_campania":"value1",
+            "nombre_lista_marketing": "value7"
+        }
+  },
+  "query": {
+    "match": {
+      "idCliente": 3202001
+    }
+  }
+}
+
+
+
+# query de una actualizacion de varios clientes almacendos en un array, los campos que se actualizan son: "idCampania","fecha_activacion_campania","estatus_campania","nombre_lista_marketing" por medio del "idCliente"
+
+POST renovacionestopup/_update_by_query/
+{
+  "script": {
+   "source": "ctx._source.id_campania = params.idCampania; ctx._source.fecha_activacion_campania = params.fecha_activacion_campania; ctx._source.estatus_campania = params.estatus_campania; ctx._source.nombre_lista_marketing = params.nombre_lista_marketing",
+        "lang": "painless",
+        "params" : {
+            "idCampania" : "12",
+            "fecha_activacion_campania":"2018-02-11",
+            "estatus_campania":"value1",
+            "nombre_lista_marketing": "value6"
+        }
+  },
+  "query": {
+        "bool" : {
+            "must" : {
+                "script" : {
+                    "script" : {
+                        "source" : "for(int i=0;i< params.idClienteArray.length; i++){if(params.idClienteArray[i] == doc['idCliente'].value ){return true;}}",
+                        "lang"   : "painless",
+                        "params" : {
+                            "idClienteArray":[3202003,3202002,3202001,3202005]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+>>>>>>> 69a5dde1171ef8475a0ddb0265cd6cd088977b80
 
