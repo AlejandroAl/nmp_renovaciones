@@ -79,3 +79,432 @@ POST renovacionestopup/_search/template
     "id_cliente" : "346780"
   }
 }
+
+
+
+
+
+
+
+
+Índice generado  (Es un indice de prueba, puede cambiar)
+
+curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243/trazabilidad_cliente/renovaciones" -H 'Content-Type: application/json' -d'
+{
+"etapa_cliente":"Sin Gestion",
+"estatus_cliente":"prospecto",
+"subetapa_cliente":"Sin Gestion",
+"macroproceso_cliente":"Promocion",
+"pantalla_cliente":"Pre Gestion",
+"folio_BPM":1,
+"folio_movilidad":1,
+"numero_solicitud":1,
+"numeroContrato":123123,
+"id_cliente":2237,
+"id_prospeccion":789,
+"fecha_cambio_estatus":"2018-05-03T13:42:20.760",
+"seguimientoCartera":"SeguimientoCartera",
+"estatus_seguimientoCartera":"Activo",
+"SAP_estatus_cliente":"Activo",
+"SAP_subestatus_cliente":"aprobado"
+}'
+
+
+Etructura
+
+"mappings": {
+      "renovaciones": {
+        "properties": {
+          "SAP_estatus_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_subestatus_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "estatus_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "estatus_seguimientoCartera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "etapa_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fecha_cambio_estatus": {
+            "type": "date"
+          },
+          "folio_BPM": {
+            "type": "long"
+          },
+          "folio_movilidad": {
+            "type": "long"
+          },
+          "id_cliente": {
+            "type": "long"
+          },
+          "id_prospeccion": {
+            "type": "long"
+          },
+          "macroproceso_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "numeroContrato": {
+            "type": "long"
+          },
+          "numero_solicitud": {
+            "type": "long"
+          },
+          "pantalla_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "seguimientoCartera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "subetapa_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    }
+
+Historia 18: Datos generales del prospecto en todas las pantallas
+
+Datos de trazabilidad
+
+curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243/trazabilidad_cliente/renovaciones/_search/template" -H 'Content-Type: application/json' -d'
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Etapa": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"etapa_cliente.keyword\"].value"
+     }
+   },
+   "folio_BPM": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"folio_BPM\"].value"
+     }
+   },
+   "folio_movilidad": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"folio_movilidad\"].value"
+     }
+   },
+   "numero_solicitud": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"numero_solicitud\"].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}'
+
+Datos cliente
+
+curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243/renovacionestopup/_search/template" -H 'Content-Type: application/json' -d'
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "idProspeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "NombreCompleto": {
+     "script": {
+       "lang": "painless",
+          "source": "doc[\"SAP_nombre_cliente_1.keyword\"].value + \" \" + doc[\"SAP_apellidoPaterno_cliente.keyword\"].value+\" \"+ doc[\"SAP_apellidoMaterno_cliente.keyword\"].value"
+     }
+   },
+   "SAP_estatus_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"SAP_estatus_cliente.keyword\"].value"
+     }
+   },
+   "subProductoOferta": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"subProductoOferta.keyword\"].value"
+     }
+   },
+   "Contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"contrato\"].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2237,
+       "id_Prospeccion":789
+   }
+}'
+
+
+
+Historia 19: Linea del tiempo de los prospectos
+
+curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243/trazabilidad_cliente/renovaciones/_search/template" -H 'Content-Type: application/json' -d'
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Id_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"etapa_cliente.keyword\"].value"
+     }
+   },
+   "contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"subetapa_cliente.keyword\"].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}'
+
+
+Historia 20 Listado de telefonos del prospecto
+
+
+curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243/renovacionestopup/prospeccion/_search/template" -H 'Content-Type: application/json' -d'
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "idProspeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "CRM_telefono_1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_telefono_1.keyword\"].value"
+     }
+   },
+   "CRM_tipoTelefono_1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoTelefono_1.keyword\"].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoContacto_telefono_1.keyword\"].value"
+     }
+   },
+   "Etiqueta_Tel1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_descripcionContacto_telefono_1.keyword\"].value"
+     }
+   },
+   "CRM_telefono_2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_telefono_2.keyword\"].value"
+     }
+   },
+    "CRM_tipoTelefono_2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoTelefono_2.keyword\"].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoContacto_telefono_2.keyword\"].value"
+     }
+   },
+   "Etiqueta_Tel2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_descripcionContacto_telefono_2.keyword\"].value"
+     }
+   },
+   "CRM_telefono_3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_telefono_3.keyword\"].value"
+     }
+   },
+    "CRM_tipoTelefono_3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoTelefono_3.keyword\"].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoContacto_telefono_3.keyword\"].value"
+     }
+   },
+   "Etiqueta_Tel3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_descripcionContacto_telefono_3.keyword\"].value"
+     }
+   },
+   "CRM_telefono_4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_telefono_4.keyword\"].value"
+     }
+   },
+    "CRM_tipoTelefono_4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoTelefono_4.keyword\"].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_tipoContacto_telefono_4.keyword\"].value"
+     }
+   },
+   "Etiqueta_Tel4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"CRM_descripcionContacto_telefono_4.keyword\"].value"
+     }
+   }
+ }
+},
+
+   "params" : {
+       "id_Cliente" : 2237,
+       "id_Prospeccion":789
+   }
+}'
+
+
+
+  
+Actuallización estados del proceso del cliente
+
+curl -XPOST "https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243/trazabilidad_cliente/renovaciones/_update_by_query/" -H 'Content-Type: application/json' -d'
+{
+ "script": {
+  "source": "ctx._source.etapa_cliente = params.etapa_cliente; ctx._source.subetapa_cliente = params.subetapa_cliente; ctx._source.estatus_cliente = params.estatus_cliente; ctx._source.folio_BPM = params.folio_BPM; ctx._source.fecha_cambio_estatus = params.fecha_cambio_estatus; ctx._source.macroproceso_cliente = params.macroproceso_cliente; ctx._source.pantalla_cliente = params.pantalla_cliente",
+       "lang": "painless",
+       "params" : {
+           "etapa_cliente" : "12",
+           "subetapa_cliente":"11",
+           "estatus_cliente":"value1",
+           "folio_BPM": 5,
+           "fecha_cambio_estatus": "2019-05-03T13:42:20.760",
+           "macroproceso_cliente": "Promocion8",
+           "pantalla_cliente": "Pre Gestion"
+       }
+ },
+ "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"2237"} },
+       { "match": { "id_prospeccion":"789" } }
+     ]
+   }
+ }
+}'
+
+
+

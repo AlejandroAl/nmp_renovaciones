@@ -1,0 +1,238 @@
+curl -XGET "http://10.112.12.38:9200/renovacionestopup/_search/template" -H 'Content-Type: application/json' -d'
+{
+ "source": {
+   "query": {
+     "match": {
+       "idProspeccion": "{{id_prospeccion_param}}"
+     }
+   },
+   "aggs": {
+     "TotalProspectos": {
+       "value_count": {
+         "field": "idCliente"
+       }
+     }
+   }
+ },
+ "params": {
+   "id_prospeccion_param": 789
+ }
+}'
+
+
+Donde *id_prospeccion_param* es el valor de la prospección a consultar.
+
+
+
+
+
+Los campos que cumpliran con una parte de la historia 5 es el siguiente:
+
+---------Fragmento de la respuesta--------------
+"aggregations": {
+    "TotalProspectos": {
+      "value": 1     ///Este es el valor que indicara el total de prospectos, se puede encontrar al final del cuerpo de la respuesta
+    }
+  }
+
+  ------Fin de fragmento de la respuesta------
+
+
+---------------Respuesta proveniente del ES-------------------------
+
+{
+  "took": 2,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "renovacionestopup",
+        "_type": "prospeccion",
+        "_id": "AWMsApiiN9_0pwSSWg3q",
+        "_score": 1,
+        "_source": {
+          "idProspeccion": 789,
+          "idCliente": 346780,
+          "contrato": 237,
+          "riesgos_producto": "Crédito Simple S/G",
+          "riesgos_subProducto": "OMEGA_M",
+          "numeroPagos_producto_actual": 24,
+          "tasa_producto_actual": 32,
+          "monto_producto_actual": 7333,
+          "pago_producto_actual": 437.359654036264,
+          "nivel_riesgo_actual": "Bajo",
+          "subProductoOferta": "Renovacion",
+          "ingreso": 8686,
+          "montoOfertaAutomatica_1": 4963,
+          "numeroPagosOfertaAutomatica_1": 12,
+          "tasaOfertaAutomatica_1": 0,
+          "pagoOfertaAutomatica_1": 524.831584843517,
+          "montoOfertaAutomatica_2": 6716,
+          "numeroPagosOfertaAutomatica_2": 18,
+          "tasaOfertaAutomatica_2": 0,
+          "pagoOfertaAutomatica_2": 524.831584843517,
+          "montoOfertaAutomatica_3": 8276,
+          "numeroPagosOfertaAutomatica_3": 24,
+          "tasaOfertaAutomatica_3": 0,
+          "pagoOfertaAutomatica_3": 524.831584843517,
+          "montoOfertaAutomatica_4": 10388,
+          "numeroPagosOfertaAutomatica_4": 36,
+          "tasaOfertaAutomatica_4": 0,
+          "pagoOfertaAutomatica_4": 524.831584843517,
+          "montoOfertaAutomaticaMaxima_1": 4963,
+          "numeroPagosOfertaAutomaticaMaxima_1": 12,
+          "tasaOfertaAutomaticaMaxima_1": 0,
+          "pagoOfertaAutomaticaMaxima_1": 524.831584843517,
+          "montoOfertaAutomaticaMaxima_2": 6716,
+          "numeroPagosOfertaAutomaticaMaxima_2": 18,
+          "tasaOfertaAutomaticaMaxima_2": 0,
+          "pagoOfertaAutomaticaMaxima_2": 524.831584843517,
+          "montoOfertaAutomaticaMaxima_3": 8276,
+          "numeroPagosOfertaAutomaticaMaxima_3": 24,
+          "tasaOfertaAutomaticaMaxima_3": 0,
+          "pagoOfertaAutomaticaMaxima_3": 524.831584843517,
+          "montoOfertaAutomaticaMaxima_4": 10388,
+          "numeroPagosOfertaAutomaticaMaxima_4": 36,
+          "tasaOfertaAutomaticaMaxima_4": 0,
+          "pagoOfertaAutomaticaMaxima_4": 524.831584843517,
+          "ITA_tasa_1": 0,
+          "ITA_tasa_2": 0,
+          "ITA_tasa_3": 0,
+          "ITA_tasa_4": 0,
+          "ITA_monto": 11427,
+          "ITA_numeroPagos_1": 12,
+          "ITA_numeroPagos_2": 18,
+          "ITA_numeroPagos_3": 24,
+          "ITA_numeroPagos_4": 36,
+          "nivel_riesgo_1": "Bajo",
+          "flag_ruta": 1,
+          "fecha_cargaArchivo_layoutOfertas": "04/30/2018 15:57:19",
+          "seguimientoCartera": null,
+          "estatus_seguimientoCartera": null,
+          "fecha_prospeccion": "04/30/2018 15:57:19",
+          "fecha_insert": "04/30/2018 15:57:19",
+          "SAP_nombre_cliente_1": "MARCO",
+          "SAP_nombre_cliente_2": "ADRIAN",
+          "SAP_apellidoPaterno_cliente": "CARRANZA",
+          "SAP_apellidoMaterno_cliente": "EZQUIVEL",
+          "SAP_calleDomicilio_cliente": "CLUB ATLAS",
+          "SAP_numeroDomicilio_cliente": "63",
+          "SAP_calleDomicilio_1": "UNO",
+          "SAP_calleDomicilio_2": "DOS",
+          "SAP_clave_coloniaDomicilio": "720",
+          "SAP_coloniaDomicilio": "CUAUHTEMOC",
+          "SAP_clave_municipioDomicilio": "15",
+          "SAP_municipioDomicilio": "CUAUHTEMOC",
+          "SAP_estadoDomicilio": "DF",
+          "SAP_codigoPostalDomicilio": "6500",
+          "SAP_geolocalizacion_x_domicilio": "19.4257733",
+          "SAP_geolocalizacion_y_domicilio": "-99.168163",
+          "SAP_telefono_1": "552514353",
+          "SAP_telefono_2": "14252545",
+          "rfc_cliente": "CAEM520615MV0",
+          "curp_cliente": "CAEM520615HBNRZR",
+          "localidad_cliente": null,
+          "SAP_estatus_cliente": "60",
+          "SAP_subestatus_cliente": "601",
+          "SAP_producto": "AUTOSIN",
+          "SAP_subProducto": null,
+          "SAP_tipoContacto_telefono_1": "PREDETERMINADO",
+          "SAP_descripcionContacto_telefono_1": null,
+          "SAP_intentos_telefono_1": 0,
+          "SAP_fecha_contacto _telefono_1": null,
+          "SAP_tipoContacto_telefono_2": "",
+          "SAP_descripcionContacto_telefono_2": null,
+          "SAP_intentos_telefono_2": "0",
+          "SAP_fecha_contacto_telefono_2": null,
+          "CRM_tipoTelefono_1": null,
+          "CRM_lada_telefono_1": "33",
+          "CRM_telefono_1": null,
+          "CRM_extension_telefono_1": null,
+          "CRM_intentos_telefono_1": null,
+          "CRM_tipoContacto_telefono_1": null,
+          "CRM_descripcionContacto_telefono_1": null,
+          "CRM_fecha_contacto_telefono_1": null,
+          "CRM_tipoTelefono_2": null,
+          "CRM_lada_telefono_2": null,
+          "CRM_telefono3_2": null,
+          "CRM_extension_telefono_2": null,
+          "CRM_intentos_telefono_2": null,
+          "CRM_tipoContacto_telefono_2": null,
+          "CRM_descripcionContacto_telefono_2": null,
+          "CRM_fecha_contacto_telefono_2": null,
+          "CRM_tipoTelefono_3": null,
+          "CRM_lada_telefono_3": null,
+          "CRM_telefono_3": null,
+          "CRM_extension_telefono_3": null,
+          "CRM_intentos_telefono_3": null,
+          "CRM_tipoContacto_telefono_3": null,
+          "CRM_descripcionContacto_telefono_3": null,
+          "CRM_fecha_contacto_telefono_3": null,
+          "CRM_tipoTelefono_4": null,
+          "CRM_lada_telefono_4": null,
+          "CRM_telefono_4": null,
+          "CRM_extension_telefono_4": null,
+          "CRM_intentos_telefono_4": null,
+          "CRM_tipoContacto_telefono_4": null,
+          "CRM_descripcionContacto_telefono_4": null,
+          "CRM_fecha_contacto_telefono_4": null,
+          "CRM_tipoTelefono_5": null,
+          "CRM_lada_telefono_5": null,
+          "CRM_telefono_5": null,
+          "CRM_extension_telefono_5": null,
+          "CRM_intentos_telefono_5": null,
+          "CRM_tipoContacto_telefono_5": null,
+          "CRM_descripcionContacto_telefono_5": null,
+          "CRM_fecha_contacto_telefono_5": null,
+          "CRM_nombreCliente": null,
+          "CRM_apellidosCliente": null,
+          "CRM_tipoDomicilio_cliente": null,
+          "CRM_tipoVivienda_cliente": null,
+          "CRM_calle_cliente": null,
+          "CRM_numero_domicilioCliente": null,
+          "CRM_numeroInterior_domicilioCliente": null,
+          "CRM_lote_domicilioCliente": null,
+          "CRM_manzana_domicilioCliente": null,
+          "CRM_entreCalle_1": null,
+          "CRM_entreCalle_2": null,
+          "CRM_codigoPostal_domicilioCliente": null,
+          "CRM_colonia_domicilioCliente": null,
+          "CRM_municipio_domicilioCliente": null,
+          "CRM_ciudad": null,
+          "CRM_estado": null,
+          "CRM_pais": null,
+          "promotorNombre": null,
+          "promotorApellidos": null,
+          "idPromotor": null,
+          "gerenciadeVentas": null,
+          "id_campaña": "180429_4",
+          "fecha_activacion_campaña": null,
+          "estatus_campaña": null,
+          "nombre_lista_marketing": null,
+          "generadoUsuario_tipo_telefono": null,
+          "generadoUsuario_lada_telefono": null,
+          "generadoUsuario_telefono": null,
+          "generadoUsuario_extension_telefono": null,
+          "generadoUsuario_intentosContacto_telefono": null,
+          "generadoUsuario_descripcionContacto_telefono": null,
+          "generadoUsuario_fecha_creacion_telefono": null,
+          "generadoUsuario_fecha_contacto_telefono": null,
+          "estatus_carga": 0
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "TotalProspectos": {
+      "value": 1
+    }
+  }
+}

@@ -1113,3 +1113,56 @@ PUT renovacionestopup
       }
     }
 }
+
+
+
+
+
+
+Primer consulta
+
+
+GET _search/template
+{
+  "id":"prueba1",
+  "params":{
+    "subProductoOferta":"Renovacion",
+    "subProducto2":"TopUp"
+  }
+}
+
+POST _scripts/prueba1
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "size":0,
+      "query": {
+        "match": {
+          "idProspeccion": 9
+        }
+      },
+      "aggs": {
+        "TotalProspeccion": {
+          "value_count": {
+            "field": "idCliente"
+          }
+        },
+        "TotalRenovacion": {
+          "filter": {
+            "term": {
+              "subProductoOferta.keyword": "{{subProductoOferta}}"
+            }
+          }
+        },
+        "TotalTopUp": {
+          "filter": {
+            "term": {
+              "subProductoOferta.keyword": "{{subProducto2}}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
