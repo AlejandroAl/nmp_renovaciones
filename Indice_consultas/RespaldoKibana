@@ -1,0 +1,2363 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+DELETE renovacionestopup
+
+GET renovacionestopup/_search
+{
+  "query": {}
+}
+
+POST renovacionestopup/prospeccion
+{
+  "idProspeccion":789,
+  "idCliente":1241,
+  "contrato":2378,
+  "riesgos_producto":"Crédito Simple S/G",
+  "riesgos_subProducto":"OMEGA_M",
+  "numeroPagos_producto_actual":24,
+  "tasa_producto_actual":32,
+  "monto_producto_actual":7333,
+  "pago_producto_actual":437.359654036264,
+  "nivel_riesgo_actual":"Bajo",
+  "subProductoOferta":"PopUp",
+  "ingreso":8686,
+  "montoOfertaAutomatica_1":4963,
+  "numeroPagosOfertaAutomatica_1":12,
+  "tasaOfertaAutomatica_1":0,
+  "pagoOfertaAutomatica_1":524.831584843517,
+  "montoOfertaAutomatica_2":6716,
+  "numeroPagosOfertaAutomatica_2":18,
+  "tasaOfertaAutomatica_2":0,
+  "pagoOfertaAutomatica_2":524.831584843517,
+  "montoOfertaAutomatica_3":8276,
+  "numeroPagosOfertaAutomatica_3":24,
+  "tasaOfertaAutomatica_3":0,
+  "pagoOfertaAutomatica_3":524.831584843517,
+  "montoOfertaAutomatica_4":10388,
+  "numeroPagosOfertaAutomatica_4":36,
+  "tasaOfertaAutomatica_4":0,
+  "pagoOfertaAutomatica_4":524.831584843517,
+  "montoOfertaAutomaticaMaxima_1":4963,
+  "numeroPagosOfertaAutomaticaMaxima_1":12,
+  "tasaOfertaAutomaticaMaxima_1":0,
+  "pagoOfertaAutomaticaMaxima_1":524.831584843517,
+  "montoOfertaAutomaticaMaxima_2":6716,
+  "numeroPagosOfertaAutomaticaMaxima_2":18,
+  "tasaOfertaAutomaticaMaxima_2":0,
+  "pagoOfertaAutomaticaMaxima_2":524.831584843517,
+  "montoOfertaAutomaticaMaxima_3":8276,
+  "numeroPagosOfertaAutomaticaMaxima_3":24,
+  "tasaOfertaAutomaticaMaxima_3":0,
+  "pagoOfertaAutomaticaMaxima_3":524.831584843517,
+  "montoOfertaAutomaticaMaxima_4":10388,
+  "numeroPagosOfertaAutomaticaMaxima_4":36,
+  "tasaOfertaAutomaticaMaxima_4":0,
+  "pagoOfertaAutomaticaMaxima_4":524.831584843517,
+  "ITA_tasa_1":0,
+  "ITA_tasa_2":0,
+  "ITA_tasa_3":0,
+  "ITA_tasa_4":0,
+  "ITA_monto":11427,
+  "ITA_numeroPagos_1":12,
+  "ITA_numeroPagos_2":18,
+  "ITA_numeroPagos_3":24,
+  "ITA_numeroPagos_4":36,
+  "nivel_riesgo_1":"Bajo",
+  "flag_ruta":1,
+  "fecha_cargaArchivo_layoutOfertas":"04/30/2018 15:57:19",
+  "seguimientoCartera":"Siguimiento1",
+  "estatus_seguimientoCartera":"Activo",
+  "fecha_prospeccion":"04/30/2018 15:57:19",
+  "fecha_insert":"04/30/2018 15:57:19",
+  "SAP_nombre_cliente_1":"MARCO",
+  "SAP_nombre_cliente_2":"ADRIAN",
+  "SAP_apellidoPaterno_cliente":"CARRANZA",
+  "SAP_apellidoMaterno_cliente":"EZQUIVEL",
+  "SAP_calleDomicilio_cliente":"CLUB ATLAS",
+  "SAP_numeroDomicilio_cliente":"63",
+  "SAP_calleDomicilio_1":"UNO",
+  "SAP_calleDomicilio_2":"DOS",
+  "SAP_clave_coloniaDomicilio":"720",
+  "SAP_coloniaDomicilio":"CUAUHTEMOC",
+  "SAP_clave_municipioDomicilio":"15",
+  "SAP_municipioDomicilio":"CUAUHTEMOC",
+  "SAP_estadoDomicilio":"DF",
+  "SAP_codigoPostalDomicilio":"6500",
+  "SAP_geolocalizacion_x_domicilio":"19.4257733",
+  "SAP_geolocalizacion_y_domicilio":"-99.168163",
+  "SAP_telefono_1":"552514353",
+  "SAP_telefono_2":"14252545",
+  "rfc_cliente":"CAEM520615MV0",
+  "curp_cliente":"CAEM520615HBNRZR",
+  "localidad_cliente":"localidad_Cliente",
+  "SAP_estatus_cliente":"60",
+  "SAP_subestatus_cliente":"601",
+  "SAP_producto":"AUTOSIN",
+  "SAP_subProducto":"Renovacion",
+  "SAP_tipoContacto_telefono_1":"PREDETERMINADO",
+  "SAP_descripcionContacto_telefono_1":"descripcionContacto",
+  "SAP_intentos_telefono_1":0,
+  "SAP_fecha_contacto _telefono_1":"04/30/2018 15:57:19",
+  "SAP_tipoContacto_telefono_2":"",
+  "SAP_descripcionContacto_telefono_2":"SAP_descripcionContacto_telefono_2",
+  "SAP_intentos_telefono_2":"0",
+  "SAP_fecha_contacto_telefono_2":"04/30/2018 15:57:19",
+  "CRM_tipoTelefono_1":"88",
+  "CRM_lada_telefono_1":"33",
+  "CRM_telefono_1":"554567576",
+  "CRM_extension_telefono_1":"ext 55",
+  "CRM_intentos_telefono_1":5566,
+  "CRM_tipoContacto_telefono_1":"directo",
+  "CRM_descripcionContacto_telefono_1":"CRM_descripcionContacto_telefono_1",
+  "CRM_fecha_contacto_telefono_1":"04/30/2018 15:57:19",
+  "CRM_tipoTelefono_2":"CRM_tipoTelefono_2",
+  "CRM_lada_telefono_2":"CRM_lada_telefono_2",
+  "CRM_telefono_2":"CRM_telefono_2",
+  "CRM_extension_telefono_2":"CRM_extension_telefono_2",
+  "CRM_intentos_telefono_2":1234,
+  "CRM_tipoContacto_telefono_2":"CRM_tipoContacto_telefono_2",
+  "CRM_descripcionContacto_telefono_2":"CRM_descripcionContacto_telefono_2",
+  "CRM_fecha_contacto_telefono_2":"04/30/2018 15:57:19",
+  "CRM_tipoTelefono_3":"CRM_tipoTelefono_3",
+  "CRM_lada_telefono_3":"CRM_lada_telefono_3",
+  "CRM_telefono_3":"CRM_telefono_3",
+  "CRM_extension_telefono_3":"CRM_extension_telefono_3",
+  "CRM_intentos_telefono_3":1234,
+  "CRM_tipoContacto_telefono_3":"docas",
+  "CRM_descripcionContacto_telefono_3":"CRM_descripcionContacto_telefono_3",
+  "CRM_fecha_contacto_telefono_3":"04/30/2018 15:57:19",
+  "CRM_tipoTelefono_4":"CRM_tipoTelefono_4",
+  "CRM_lada_telefono_4":"CRM_lada_telefono_4",
+  "CRM_telefono_4":"CRM_telefono_4",
+  "CRM_extension_telefono_4":"CRM_extension_telefono_4",
+  "CRM_intentos_telefono_4":123,
+  "CRM_tipoContacto_telefono_4":"CRM_tipoContacto_telefono_4",
+  "CRM_descripcionContacto_telefono_4":"CRM_descripcionContacto_telefono_4",
+  "CRM_fecha_contacto_telefono_4":"04/30/2018 15:57:19",
+  "CRM_tipoTelefono_5":"CRM_tipoTelefono_5",
+  "CRM_lada_telefono_5":"CRM_lada_telefono_5",
+  "CRM_telefono_5":"CRM_telefono_5",
+  "CRM_extension_telefono_5":"CRM_extension_telefono_5",
+  "CRM_intentos_telefono_5":512,
+  "CRM_tipoContacto_telefono_5":"CRM_tipoContacto_telefono_5",
+  "CRM_descripcionContacto_telefono_5":"CRM_descripcionContacto_telefono_5",
+  "CRM_fecha_contacto_telefono_5":"04/30/2018 15:57:19",
+  "CRM_nombreCliente":"CRM_nombreCliente",
+  "CRM_apellidosCliente":"CRM_apellidosCliente",
+  "CRM_tipoDomicilio_cliente":"CRM_tipoDomicilio_cliente",
+  "CRM_tipoVivienda_cliente":"CRM_tipoVivienda_cliente",
+  "CRM_calle_cliente":"CRM_calle_cliente",
+  "CRM_numero_domicilioCliente":"8b",
+  "CRM_numeroInterior_domicilioCliente":"CRM_numeroInterior_domicilioCliente",
+  "CRM_lote_domicilioCliente":"CRM_lote_domicilioCliente",
+  "CRM_manzana_domicilioCliente":"CRM_manzana_domicilioCliente",
+  "CRM_entreCalle_1":"CRM_entreCalle_1",
+  "CRM_entreCalle_2":"CRM_entreCalle_2",
+  "CRM_codigoPostal_domicilioCliente":"54671",
+  "CRM_colonia_domicilioCliente":"CRM_colonia_domicilioCliente",
+  "CRM_municipio_domicilioCliente":"CRM_municipio_domicilioCliente",
+  "CRM_ciudad":"CRM_ciudad",
+  "CRM_estado":"CRM_estado",
+  "CRM_pais":"CRM_pais",
+  "promotorNombre":"promotorNombre",
+  "promotorApellidos":"promotorApellidos",
+  "idPromotor":"12d",
+  "gerenciadeVentas":"gerenciadeVentas",
+  "id_campaña":"180429_4",
+  "fecha_activacion_campaña":"04/30/2018 15:57:19",
+  "estatus_campaña":"acti",
+  "nombre_lista_marketing":"nombre_lista_marketing",
+  "generadoUsuario_tipo_telefono":"tipo_text",
+  "generadoUsuario_lada_telefono":"123123",
+  "generadoUsuario_telefono":"usuarioTele",
+  "generadoUsuario_extension_telefono":"12123",
+  "generadoUsuario_intentosContacto_telefono":67,
+  "generadoUsuario_descripcionContacto_telefono":"descripcionTel",
+  "generadoUsuario_fecha_creacion_telefono":"04/30/2018 15:57:19",
+  "generadoUsuario_fecha_contacto_telefono": "04/30/2018 15:57:19",
+  "estatus_carga":0
+  
+}
+
+
+DELETE renovacionestopup
+
+PUT renovacionestopup
+{
+  "mappings": {
+      "prospeccion": {
+        "dynamic": "strict",
+        "properties": {
+          "CRM_apellidosCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_calle_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_ciudad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_codigoPostal_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_colonia_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_descripcionContacto_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_descripcionContacto_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_descripcionContacto_telefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_descripcionContacto_telefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_descripcionContacto_telefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_entreCalle_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_entreCalle_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_estado": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_extension_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_extension_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_extension_telefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_extension_telefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_extension_telefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_fecha_contacto_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_fecha_contacto_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_fecha_contacto_telefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_fecha_contacto_telefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_fecha_contacto_telefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_intentos_telefono_1": {
+            "type": "long"
+          },
+          "CRM_intentos_telefono_2": {
+            "type": "long"
+          },
+          "CRM_intentos_telefono_3": {
+            "type": "long"
+          },
+          "CRM_intentos_telefono_4": {
+            "type": "long"
+          },
+          "CRM_intentos_telefono_5": {
+            "type": "long"
+          },
+          "CRM_lada_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_lada_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_lada_telefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_lada_telefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_lada_telefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_lote_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_manzana_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_municipio_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_nombreCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_numeroInterior_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_numero_domicilioCliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_pais": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_telefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_telefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_telefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoContacto_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoContacto_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoContacto_telefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoContacto_telefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoContacto_telefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoDomicilio_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoTelefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoTelefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoTelefono_3": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoTelefono_4": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoTelefono_5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CRM_tipoVivienda_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ITA_monto": {
+            "type": "long"
+          },
+          "ITA_numeroPagos_1": {
+            "type": "long"
+          },
+          "ITA_numeroPagos_2": {
+            "type": "long"
+          },
+          "ITA_numeroPagos_3": {
+            "type": "long"
+          },
+          "ITA_numeroPagos_4": {
+            "type": "long"
+          },
+          "ITA_tasa_1": {
+            "type": "long"
+          },
+          "ITA_tasa_2": {
+            "type": "long"
+          },
+          "ITA_tasa_3": {
+            "type": "long"
+          },
+          "ITA_tasa_4": {
+            "type": "long"
+          },
+          "SAP_apellidoMaterno_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_apellidoPaterno_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_calleDomicilio_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_calleDomicilio_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_calleDomicilio_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_clave_coloniaDomicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_clave_municipioDomicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_codigoPostalDomicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_coloniaDomicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_descripcionContacto_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_descripcionContacto_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_estadoDomicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_estatus_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_fecha_contacto _telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_fecha_contacto_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_geolocalizacion_x_domicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_geolocalizacion_y_domicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_intentos_telefono_1": {
+            "type": "long"
+          },
+          "SAP_intentos_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_municipioDomicilio": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_nombre_cliente_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_nombre_cliente_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_numeroDomicilio_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_producto": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_subProducto": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_subestatus_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_tipoContacto_telefono_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "SAP_tipoContacto_telefono_2": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "contrato": {
+            "type": "long"
+          },
+          "curp_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "estatus_campaña": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "estatus_carga": {
+            "type": "long"
+          },
+          "estatus_seguimientoCartera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fecha_activacion_campaña": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fecha_cargaArchivo_layoutOfertas": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fecha_insert": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fecha_prospeccion": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "flag_ruta": {
+            "type": "long"
+          },
+          "generadoUsuario_descripcionContacto_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "generadoUsuario_extension_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "generadoUsuario_fecha_contacto_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "generadoUsuario_fecha_creacion_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "generadoUsuario_intentosContacto_telefono": {
+            "type": "long"
+          },
+          "generadoUsuario_lada_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "generadoUsuario_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "generadoUsuario_tipo_telefono": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "gerenciadeVentas": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "idCliente": {
+            "type": "long"
+          },
+          "idPromotor": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "idProspeccion": {
+            "type": "long"
+          },
+          "id_campaña": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ingreso": {
+            "type": "long"
+          },
+          "localidad_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "montoOfertaAutomaticaMaxima_1": {
+            "type": "long"
+          },
+          "montoOfertaAutomaticaMaxima_2": {
+            "type": "long"
+          },
+          "montoOfertaAutomaticaMaxima_3": {
+            "type": "long"
+          },
+          "montoOfertaAutomaticaMaxima_4": {
+            "type": "long"
+          },
+          "montoOfertaAutomatica_1": {
+            "type": "long"
+          },
+          "montoOfertaAutomatica_2": {
+            "type": "long"
+          },
+          "montoOfertaAutomatica_3": {
+            "type": "long"
+          },
+          "montoOfertaAutomatica_4": {
+            "type": "long"
+          },
+          "monto_producto_actual": {
+            "type": "long"
+          },
+          "nivel_riesgo_1": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "nivel_riesgo_actual": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "nombre_lista_marketing": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "numeroPagosOfertaAutomaticaMaxima_1": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomaticaMaxima_2": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomaticaMaxima_3": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomaticaMaxima_4": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomatica_1": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomatica_2": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomatica_3": {
+            "type": "long"
+          },
+          "numeroPagosOfertaAutomatica_4": {
+            "type": "long"
+          },
+          "numeroPagos_producto_actual": {
+            "type": "long"
+          },
+          "pagoOfertaAutomaticaMaxima_1": {
+            "type": "float"
+          },
+          "pagoOfertaAutomaticaMaxima_2": {
+            "type": "float"
+          },
+          "pagoOfertaAutomaticaMaxima_3": {
+            "type": "float"
+          },
+          "pagoOfertaAutomaticaMaxima_4": {
+            "type": "float"
+          },
+          "pagoOfertaAutomatica_1": {
+            "type": "float"
+          },
+          "pagoOfertaAutomatica_2": {
+            "type": "float"
+          },
+          "pagoOfertaAutomatica_3": {
+            "type": "float"
+          },
+          "pagoOfertaAutomatica_4": {
+            "type": "float"
+          },
+          "pago_producto_actual": {
+            "type": "float"
+          },
+          "promotorApellidos": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "promotorNombre": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "rfc_cliente": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "riesgos_producto": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "riesgos_subProducto": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "seguimientoCartera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "subProductoOferta": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tasaOfertaAutomaticaMaxima_1": {
+            "type": "long"
+          },
+          "tasaOfertaAutomaticaMaxima_2": {
+            "type": "long"
+          },
+          "tasaOfertaAutomaticaMaxima_3": {
+            "type": "long"
+          },
+          "tasaOfertaAutomaticaMaxima_4": {
+            "type": "long"
+          },
+          "tasaOfertaAutomatica_1": {
+            "type": "long"
+          },
+          "tasaOfertaAutomatica_2": {
+            "type": "long"
+          },
+          "tasaOfertaAutomatica_3": {
+            "type": "long"
+          },
+          "tasaOfertaAutomatica_4": {
+            "type": "long"
+          },
+          "tasa_producto_actual": {
+            "type": "long"
+          }
+        }
+      }
+    }
+}
+
+
+POST renovacionestopup/_search
+{
+  "query": {"match": {
+    "idCliente": "2237"
+  }}
+}
+
+POST renovacionestopup/_search/template
+{
+  "source": {
+ "query": {"match": {
+   "idCliente": "{{id_cliente}}"
+ }},
+ "script_fields": {
+   "NombreCompleto": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value"
+      }
+    },
+    "NumeroTelefonico": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_telefono_1.keyword'].value"
+      }
+    },
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['idCliente'].value"
+      }
+    }
+ }
+ },
+ "params":{
+    "id_cliente" : "2237"
+  }
+}
+
+POST renovacionestopup/_search/template
+{
+  "source": {
+  "query": {"match": {
+    "idCiente": "{{id_cliente}}"
+  }}, 
+  "script_fields": {
+    "NombreCompleto": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value"
+      }
+    },
+    "NumeroTelefonico": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_telefono_1.keyword'].value"
+      }
+    },
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['idCiente.keyword'].value"
+      }
+    }
+  }
+  },
+  "params":{
+    "id_cliente" : ""
+  }
+}
+
+
+POST renovacionestopup/_search
+{
+ "query": {"match_all": {}}
+}
+
+GET  trazabilidad_cliente/_search
+{
+  "query": {
+    "match": {
+      "etapa_cliente.keyword": null
+    }
+  }
+}
+
+DELETE trazabilidad_clienterenovaciones
+
+POST trazabilidad_cliente/renovaciones
+{
+"etapa_cliente":null,
+"estatus_cliente":"prospecto",
+"subetapa_cliente":"Sin Gestion",
+"macroproceso_cliente":"Promocion",
+"pantalla_cliente":"Pre Gestion",
+"folio_BPM":1,
+"folio_movilidad":1,
+"numero_solicitud":1,
+"numeroContrato":123123,
+"id_cliente":2243,
+"id_campania":"12082017_TCC",
+"id_prospeccion":792,
+"fecha_cambio_estatus":"2018-05-03T13:42:20.760",
+"seguimientoCartera":"SeguimientoCartera",
+"estatus_seguimientoCartera":"Activo",
+"SAP_estatus_cliente":"Activo",
+"SAP_subestatus_cliente":"aprobado"
+}
+
+
+
+POST trazabilidad_cliente/_search
+
+POST renovacionestopup/_search
+
+GET renovacionestopup/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "idProspeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "NombreCompleto": {
+     "script": {
+       "lang": "painless",
+          "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value"
+     }
+   },
+   "SAP_estatus_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_estatus_cliente.keyword'].value"
+     }
+   },
+   "subProductoOferta": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subProductoOferta.keyword'].value"
+     }
+   },
+   "Contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['contrato'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2237,
+       "id_Prospeccion":789
+   }
+}
+
+
+GET trazabilidad_cliente/renovaciones/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Etapa": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "folio_BPM": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_BPM'].value"
+     }
+   },
+   "folio_movilidad": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_movilidad'].value"
+     }
+   },
+   "numero_solicitud": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['numero_solicitud'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}
+
+
+
+
+GET trazabilidad_cliente/renovaciones/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Id_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subetapa_cliente.keyword'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}
+
+
+POST renovacionestopup/_search
+
+POST /renovacionestopup/prospeccion/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "idProspeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "CRM_telefono_1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_telefono_1.keyword'].value"
+     }
+   },
+   "CRM_tipoTelefono_1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoTelefono_1.keyword'].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoContacto_telefono_1.keyword'].value"
+     }
+   },
+   "Etiqueta_Tel1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_descripcionContacto_telefono_1.keyword'].value"
+     }
+   },
+   "CRM_telefono_2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_telefono_2.keyword'].value"
+     }
+   },
+    "CRM_tipoTelefono_2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoTelefono_2.keyword'].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoContacto_telefono_2.keyword'].value"
+     }
+   },
+   "Etiqueta_Tel2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_descripcionContacto_telefono_2.keyword'].value"
+     }
+   },
+   "CRM_telefono_3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_telefono_3.keyword'].value"
+     }
+   },
+    "CRM_tipoTelefono_3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoTelefono_3.keyword'].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoContacto_telefono_3.keyword'].value"
+     }
+   },
+   "Etiqueta_Tel3": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_descripcionContacto_telefono_3.keyword'].value"
+     }
+   },
+   "CRM_telefono_4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_telefono_4.keyword'].value"
+     }
+   },
+    "CRM_tipoTelefono_4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoTelefono_4.keyword'].value"
+     }
+   },
+   "CRM_tipoContacto_telefono_4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_tipoContacto_telefono_4.keyword'].value"
+     }
+   },
+   "Etiqueta_Tel4": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['CRM_descripcionContacto_telefono_4.keyword'].value"
+     }
+   }
+ }
+},
+
+   "params" : {
+       "id_Cliente" : 2237,
+       "id_Prospeccion":789
+   }
+}
+
+GET renovacionestopup/_search
+
+
+
+
+POST trazabilidad_cliente/renovaciones/_update_by_query/
+{
+ "script": {
+  "source": "ctx._source.etapa_cliente = params.etapa_cliente; ctx._source.subetapa_cliente = params.subetapa_cliente; ctx._source.estatus_cliente = params.estatus_cliente; ctx._source.folio_BPM = params.folio_BPM; ctx._source.fecha_cambio_estatus = params.fecha_cambio_estatus; ctx._source.macroproceso_cliente = params.macroproceso_cliente; ctx._source.pantalla_cliente = params.pantalla_cliente",
+       "lang": "painless",
+       "params" : {
+           "etapa_cliente" : "12",
+           "subetapa_cliente":"11",
+           "estatus_cliente":"value1",
+           "folio_BPM": 5,
+           "fecha_cambio_estatus": "2019-05-03T13:42:20.760",
+           "macroproceso_cliente": "Promocion8",
+           "pantalla_cliente": "Pre Gestion"
+       }
+ },
+ "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"2237"} },
+       { "match": { "id_prospeccion":"789" } }
+     ]
+   }
+ }
+}
+
+
+
+POST _scripts/datos_cliente
+{
+  "script": {
+    "lang": "painless",
+    "source": "'Nombre Completo:'+' '+doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value+','+'Subproducto oferta:'+' '+doc['subProductoOferta.keyword']+','+'Contrato:'+' '+doc['contrato']+','+'Estatus Cliente SAP:'+' '+doc['subProductoOferta.keyword']"
+  }
+}
+
+POST renovacionestopup/_search/template
+{
+  "source": {
+  "query": {
+    "match": {
+      "idCliente": "{{id_cliente}}"
+    }
+  },
+   "script_fields": {
+   "Datos_cliente": {
+      "script": {
+        "id": "datos_cliente"
+     }
+   }
+   }  
+  },
+  "params": {
+    "id_cliente":"2237"
+  }
+
+}
+
+POST _scripts/datos_cliente
+{
+  "script": {
+    "lang": "painless",
+    "source": "'Nombre Completo:'+' '+doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value+','+'Subproducto oferta:'+' '+doc['subProductoOferta.keyword']+','+'Contrato:'+' '+doc['contrato']+','+'Estatus Cliente SAP:'+' '+doc['subProductoOferta.keyword']"
+  }
+}
+
+
+POST _scripts/datos_cl_trazabilidad
+{
+  "script": {
+    "lang": "painless",
+    "source": "'ID cliente:'+' '+doc['id_cliente'] + ' ' + 'Etapa:'+' '+doc['etapa_cliente.keyword']+' '+'Folio BPM:'+doc['folio_BPM']+' '+'Folio Movilidad:'+' '+doc['folio_movilidad']+' '+'Numero de solicitud'+doc['numero_solicitud']"
+  }
+}
+
+
+
+POST trazabilidad_cliente/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "DatosTrazabilidad_IDCliente": {
+     "script": {
+       "id":"datos_cl_trazabilidad"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}
+
+
+POST trazabilidad_cliente/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Etapa": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "folio_BPM": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_BPM'].value"
+     }
+   },
+   "folio_movilidad": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_movilidad'].value"
+     }
+   },
+   "numero_solicitud": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['numero_solicitud'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}
+
+
+POST renovacionestopup/_search
+
+POST renovacionestopup/_search
+{
+    "_source" : ["idCliente"],
+    "query" : {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"1802091011"} },
+       { "match": { "idProspeccion":9 } }
+     ]
+   }
+ 
+    }
+}
+
+
+
+GET _scripts/prueba1
+{
+  "params":{
+    "idProspeccion":"",
+    "subProductoOferta":"",
+    "subProducto2":""
+  }
+}
+
+
+GET renovacionestopup/prospeccion/_search/template
+{
+  "source":{
+    "query":{
+      "match": {
+        "idProspeccion": "{{idProspeccion}}"
+      }
+    }
+  }
+}
+
+
+POST renovacionestopup/prospeccion/_search
+
+
+POST renovacionestopup/prospeccion/_search/template
+{
+  "source":{
+    "size": 0,
+    "query": {
+      "match": {
+        "idProspeccion": 9
+      }
+    },
+    "aggs": {
+      "TotalProspeccion": {
+        "value_count": {
+          "field": "idCliente"
+        }
+      },
+      "TotalRenovacion": {
+        "filter": {
+          "term": {
+            "subProductoOferta.keyword": "{{subProductoOferta}}"
+          }
+        }
+      },
+      "TotalTopUp": {
+        "filter": {
+          "term": {
+            "subProductoOferta.keyword": "{{subProducto2}}"
+          }
+        }
+      }
+    }
+  },
+  "params":{
+    "subProductoOferta":"Renovacion",
+    "subProducto2":"TopUp"
+  }
+  
+}
+
+
+POST _search/template
+{
+  "id": "H5_ResultadosProspeccion",
+  "params": {
+    "id_campania": "180502_9_TP_CC",
+    "subProductoOferta": "Renovacion",
+    "subProducto2": "TopUp"
+  }
+}
+
+POST renovacionestopup/_search
+
+GET _scripts/H5_ResultadosProspeccion
+
+POST _scripts/H5_ResultadosProspeccion
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "size":0,
+      "query": {
+        "match": {
+          "id_campaña": "{{id_campania}}"
+        }
+      },
+      "aggs": {
+        "TotalClientesCampaña": {
+          "value_count": {
+            "field": "idCliente"
+          }
+        },
+        "TotalSubEtapa_Renovacion": {
+          "filter": {
+            "term": {
+              "subProductoOferta.keyword": "{{subProductoOferta}}"
+            }
+          }
+        },
+        "TotalSubEtapa_TopUp": {
+          "filter": {
+            "term": {
+              "subProductoOferta.keyword": "{{subProducto2}}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+POST _search/template
+{
+  "id": "H9_DatosCliente_xID",
+  "params":{
+    "id_cliente" : "78403"
+  }
+}
+
+POST _scripts/H9_DatosCliente_xID
+{
+  "script":{
+    "lang": "mustache",
+    "source": {
+  "query": {"match": {
+    "idCliente": "{{id_cliente}}"
+  }
+  }, 
+  "script_fields": {
+    "NombreCompleto": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value"
+      }
+    },
+    "NumeroTelefonico": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_telefono_1.keyword'].value"
+      }
+    },
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['idCliente'].value"
+      }
+    }
+  }
+  }
+  }
+}
+
+
+POST renovacionestopup/_search/template
+{
+  "source": {
+  "query": {"match": {
+    "idCliente": "{{id_cliente}}"
+  }
+  }, 
+  "script_fields": {
+    "NombreCompleto": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value"
+      }
+    },
+    "NumeroTelefonico": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_telefono_1.keyword'].value"
+      }
+    },
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['idCliente'].value"
+      }
+    }
+  }
+  },
+  "params":{
+    "id_cliente" : "78403"
+  }
+}
+
+
+POST trazabilidad_cliente/_search
+
+
+POST trazabilidad_cliente/_search/template
+{
+  "id": "H18_Datos_trazabilidad",
+  "params" : {
+       "id_Cliente" : 2243,
+       "id_campania":"12082017_TCC"
+   }
+}
+
+POST _scripts/H18_Datos_trazabilidad
+{
+  "script":{
+    "lang": "mustache",
+    "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_campania":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Etapa": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "folio_BPM": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_BPM'].value"
+     }
+   },
+   "folio_movilidad": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_movilidad'].value"
+     }
+   },
+   "numero_solicitud": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['numero_solicitud'].value"
+     }
+   },
+     "EstatusCliente":{
+     "script":{
+       "lang": "painless",
+       "source":"doc['estatus_cliente.keyword'].value"
+     }
+   }
+ }
+}
+  }
+}
+
+
+POST trazabilidad_cliente/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_prospeccion":"{{id_Prospeccion}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Etapa": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"etapa_cliente.keyword\"].value"
+     }
+   },
+   "folio_BPM": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"folio_BPM\"].value"
+     }
+   },
+   "folio_movilidad": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"folio_movilidad\"].value"
+     }
+   },
+   "numero_solicitud": {
+     "script": {
+       "lang": "painless",
+      "source": "doc[\"numero_solicitud\"].value"
+     }
+   },
+   "EstatusCliente":{
+     "script":{
+       "lang": "painless",
+       "source":"doc['estatus_cliente.keyword'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 2239,
+       "id_Prospeccion":789
+   }
+}
+
+
+
+
+
+
+### Historia 6 
+
+POST renovacionestopup/_search
+{
+ "stored_fields":"_id",
+ "query":{
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"1802091011"} },
+       { "match": { "id_campaña.keyword":"180502_9_TP_CC" } }
+     ]
+   }
+ 
+ }
+
+}
+
+POST renovacionestopup/prospeccion/e7UJR2MB-6V0_PKYdu1F/_update?pretty
+
+{
+  "doc": {
+            "idCampaña" : "value1",
+            "fecha_activacion_campaña":"2017-02-11",
+            "estatus_campaña":"value2",
+            "nombre_lista_marketing": "value3"
+   }
+}
+
+
+
+POST renovacionestopup/_search
+{
+  "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"1802091011"} },
+       { "match": { "id_campaña.keyword":"180502_9_TP_CC" } }
+     ]
+   }
+  }
+}
+
+
+POST renovacionestopup/_search/template
+{
+  "id": "H9_DatosCliente_xID",
+  "params":{
+    "id_cliente" : "78403",
+    "id_campania": "180502_9_TP_CC"
+  }
+}
+
+POST renovacionestopup/_search
+
+
+POST _scripts/H9_DatosCliente_xID
+{
+  "script":{
+    "lang": "mustache",
+    "source": {
+  "query": {
+    
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_cliente}}"} },
+       { "match": { "id_campaña.keyword":"{{id_campania}}" } }
+     ]
+   }
+  
+  }, 
+  "script_fields": {
+    "Nombre": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_1.keyword'].value"
+      }
+    },
+    "Nombre_2": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_nombre_cliente_2.keyword'].value"
+      }
+    },
+    "ApellidoPaterno":{
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_apellidoPaterno_cliente.keyword'].value"
+      }
+    },
+    "ApellidoMaterno":{
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_apellidoMaterno_cliente.keyword'].value"
+      }
+    },
+    "NumeroTelefonico": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['SAP_telefono_1.keyword'].value"
+      }
+    },
+    "Id_cliente": {
+      "script": {
+        "lang": "painless",
+    "source": "doc['idCliente'].value"
+      }
+    }
+  }
+  }
+  }
+}
+
+POST trazabilidad_cliente/_search
+{
+ "stored_fields":"_id",
+ "query":{
+   "bool": {
+     "must": [
+       { "match": {"id_cliente": 2243} },
+       { "match": { "id_campania": "12082017_TCC" } }
+     ]
+   }
+ }
+}
+
+GET trazabilidad_cliente/_search
+
+
+POST trazabilidad_cliente/renovaciones
+{
+  "id_campania":"12082017_TCC"
+}
+
+POST trazabilidad_cliente/AWNK0wOlF_O_ig9TvEjQ/_update"
+{
+  "doc": {
+            "idCliente" : "value2",
+            "id_campania":"12082017_TCC",
+            "macroproceso_cliente":"value2",
+            "pantalla_cliente": "value3",
+            "etapa_cliente":"value2",
+            "subetapa_cliente":"value2",
+            "estatus_cliente":"value2",
+            "folio_BPM":1,
+            "folio_movilidad":1,
+            "numeroContrato":1,
+            "numero_solicitud":1,
+            "fecha_cambio_estatus":"2018-05-03T13:42:20.760"
+   }
+}
+
+
+POST trazabilidad_cliente/_search
+
+POST trazabilidad_cliente/_search/template
+{
+  "id": "H10_Datos_trazabilidad",
+  "params" : {
+       "id_Cliente" : 2243,
+       "id_Prospeccion":792
+   }
+}
