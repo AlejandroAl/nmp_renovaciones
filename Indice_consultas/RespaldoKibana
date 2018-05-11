@@ -2361,3 +2361,667 @@ POST trazabilidad_cliente/_search/template
        "id_Prospeccion":792
    }
 }
+
+
+
+
+
+
+
+
+
+
+
+------------------11 de MAyo
+
+
+
+
+
+
+
+
+
+
+
+DELETE trazabilidad_cliente
+
+
+POST trazabilidad_cliente/renovaciones
+{
+"etapa_cliente":"Solicitud",
+"estatus_cliente":"prospecto",
+"subetapa_cliente":"Sin Gestion",
+"macroproceso_cliente":"Promocion",
+"pantalla_cliente":"Pre Gestion",
+"folio_BPM":1,
+"folio_movilidad":1,
+"numero_solicitud":1,
+"numeroContrato":123123,
+"id_cliente":2243,
+"id_campania":"12082017_TCC",
+"id_prospeccion":792,
+"fecha_cambio_estatus":"2018-05-03T13:42:20.760",
+"seguimientoCartera":"SeguimientoCartera",
+"estatus_seguimientoCartera":"Activo",
+"SAP_estatus_cliente":"Activo",
+"SAP_subestatus_cliente":"aprobado"
+}
+
+
+
+POST renovacionestopup/_search
+
+
+POST _scripts/H18_DatosProspecto
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "id_campaña":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "NombreCompleto": {
+     "script": {
+       "lang": "painless",
+          "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value"
+     }
+   },
+   "Nombre_2":{
+     "script": {
+       "lang":"painless",
+       "source":"doc['SAP_nombre_cliente_2.keyword'].value"
+     }
+   },
+   "SAP_estatus_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_estatus_cliente.keyword'].value"
+     }
+   },
+   "subProductoOferta": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subProductoOferta.keyword'].value"
+     }
+   },
+   "Contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['contrato'].value"
+     }
+   }
+ }
+}
+  }
+}
+
+
+GET _scripts/
+
+POST renovacionestopup/_search/template
+{
+  "id":"H18_DatosProspecto",
+  "params" : {
+       "id_Cliente" : 1802091011,
+       "id_campania":"180502_9_TP_CC"
+   }
+}
+
+
+POST renovacionestopup/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "id_campaña":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "NombreCompleto": {
+     "script": {
+       "lang": "painless",
+          "source": "doc['SAP_nombre_cliente_1.keyword'].value + ' ' + doc['SAP_apellidoPaterno_cliente.keyword'].value+' '+ doc['SAP_apellidoMaterno_cliente.keyword'].value"
+     }
+   },
+   "SAP_estatus_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_estatus_cliente.keyword'].value"
+     }
+   },
+   "subProductoOferta": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subProductoOferta.keyword'].value"
+     }
+   },
+   "Contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['contrato'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente" : 1802091011,
+       "id_campania":"180502_9_TP_CC"
+   }
+}
+
+
+
+
+
+POST trazabilidad_cliente/_search
+
+POST trazabilidad_cliente/_search/template
+{
+  "source":{
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_cliente}}"} },
+       { "match": { "id_campania":"{{id_campania}}" } }
+     ] 
+   }
+ }
+,
+ "script_fields": {
+   "Id_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subetapa_cliente.keyword'].value"
+     }
+   }
+    }
+  },
+  "params": {
+    "id_cliente" : 2243,
+     "id_campania": "12082017_TCC"
+  }
+
+}
+
+
+
+POST /renovacionestopup/_search/template
+{
+  "id":"H18_DatosProspecto",
+  "params" : {
+       "id_Cliente" : 1802091011,
+       "id_campania":"180502_9_TP_CC"
+   }
+}
+
+
+POST  trazabilidad_cliente/_search  
+
+
+POST _scripts/H19_LineaTiempoProspectos
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_campania":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Id_Cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['id_cliente'].value"
+     }
+   },
+   "MacroProceso": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['macroproceso_cliente.keyword'].value"
+     }
+   },
+    "Subetapa_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subetapa_cliente.keyword'].value"
+     }
+   },
+   "contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subetapa_cliente.keyword'].value"
+     }
+   },
+   "PantallaCliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['pantalla_cliente.keyword'].value"
+     }
+   },
+   "Id_campaña": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['id_campania.keyword'].value"
+     }
+   }
+   
+ }
+}
+  }
+}
+
+
+POST trazabilidad_cliente/_search/template?&pretty
+{
+  "id": "H19_LineaTiempoProspectos",
+  "params": {
+    "id_Cliente": 2243,
+    "id_campania": "12082017_TCC"
+  }
+}
+
+
+POST trazabilidad_cliente/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "id_cliente":"{{id_Cliente}}"} },
+       { "match": { "id_campania":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "Id_cliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subetapa_cliente.keyword'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente": 2243,
+       "id_campania": "12082017_TCC"
+   }
+}
+
+
+POST trazabilidad_cliente/_search
+
+
+POST _scripts/H19_obtener_IDs_trazabilidad
+{
+  "script": {
+    "lang": "mustache",
+    "source":{
+    "stored_fields":"_id",
+         "query": {
+            "bool": {
+               "must": [
+                  {
+                     "match": {
+                        "id_cliente": "{{id_cliente}}"
+                     }
+                  },
+                  {
+                     "match": {
+                        "id_campania": "{{id_campania}}"
+                     }
+                  }
+               ]
+            }
+         }
+  }
+  }
+}
+
+POST trazabilidad_cliente/_search/template
+{
+  "id":"H19_obtener_IDs_trazabilidad",
+  "params": {
+    "id_cliente": 2243,
+    "id_campania": "12082017_TCC"
+  }
+}
+
+GET /trazabilidad_cliente/renovaciones/_search/template
+{
+  "source":{
+ "stored_fields":"_id",
+         "query": {
+            "bool": {
+               "must": [
+                  {
+                     "match": {
+                        "id_cliente": "{{id_cliente}}"
+                     }
+                  },
+                  {
+                     "match": {
+                        "id_campania": "{{id_campania}}"
+                     }
+                  }
+               ]
+            }
+         }
+  },
+  "params": {
+    "id_cliente": 2243,
+    "id_campania": "12082017_TCC"
+  }
+}
+
+POST  /trazabilidad_cliente/renovaciones/AWNLYh2DF_O_ig9TvmOl/_update?pretty
+{
+  "doc": {
+            "macroproceso_cliente":"value1",
+            "subetapa_cliente":"value2",
+            "pantalla_cliente":"value3",
+            "nombre_lista_marketing": "value3",
+            "fecha_cambio_estatus":"2017-05-03T13:42:20.760",
+            "estatus_cliente":"prospecto"
+   }
+}
+
+
+POST renovacionestopup/_search
+
+
+POST _scripts/H20_ObtenerTelefonos_SAP
+{
+  "script": {
+    "lang": "mustache",
+     "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "id_campaña":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "SAP_telefono1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_telefono_1.keyword'].value"
+     }
+   },
+   "SAP_telefono2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_telefono_2.keyword'].value"
+     }
+   }
+ }
+}
+  }
+}
+
+POST renovacionestopup/_search/template
+{
+  "id":"H20_ObtenerTelefonos_SAP",
+  "params" : {
+       "id_Cliente": 1802091011,
+       "id_campania": "180502_9_TP_CC"
+   }
+}
+
+
+
+POST renovacionestopup/_search/template
+{
+ "source": {
+   "query": {
+   "bool": {
+     "must": [
+       { "match": { "idCliente":"{{id_Cliente}}"} },
+       { "match": { "id_campaña":"{{id_campania}}" } }
+     ]
+   }
+ }
+,
+ "script_fields": {
+   "SAP_telefono1": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_telefono_1.keyword'].value"
+     }
+   },
+   "SAP_telefono2": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['SAP_telefono_2.keyword'].value"
+     }
+   }
+ }
+},
+   "params" : {
+       "id_Cliente": 1802091011,
+       "id_campania": "180502_9_TP_CC"
+   }
+}
+
+
+POST renovacionestopup/_search
+
+POST  renovacionestopup/prospeccion/AWNGsojNF_O_ig9TrMWH/_update?pretty
+{
+  "doc": {
+            "SAP_telefono_2":"5545731233",
+            "SAP_telefono_1":"5509123333"
+   }
+}
+
+
+
+
+
+## Historia 21. Crear nuevo teléfono
+
+POST renovacionestopup/_search
+
+POST renovacionestopup/_search/template
+{
+  "id": "H21_IDs_nuevoTelefonos",
+  "params": {
+    "idcliente": 2796334,
+    "idcampania": "180502_9_TP_CC"
+  }
+}
+
+POST _scripts/H21_IDs_nuevoTelefonos
+{
+   "script": {
+      "lang": "mustache",
+      "source": {
+         "stored_fields":"_id",
+         "query": {
+            "bool": {
+               "must": [
+                  {
+                     "match": {
+                        "idCliente":"{{idcliente}}"
+                     }
+                  },
+                  {
+                     "match": {
+                        "id_campaña": "{{idcampania}}"
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
+
+
+POST renovacionestopup/_search
+{
+  "query": {"match": {
+    "idCliente": 2796334
+  }}
+}
+
+DELETE renovacionestopuprenovaciones
+
+POST renovacionestopup/prospeccion/22/_update?pretty
+{
+  "doc": {
+    "generadoUsuario_tipo_telefono": "value1",
+    "generadoUsuario_lada_telefono": "value2",
+    "generadoUsuario_telefono": "value3",
+    "generadoUsuario_fecha_creacion_telefono": "04/30/2019T15:57:19"
+  }
+}
+
+
+
+
+
+## Historia 22.-Guardar etiquetas de teléfono
+
+POST renovacionestopup/_search
+{
+  "query": {"match": {
+    "idCliente": 78403
+  }}
+}
+
+POST renovacionestopup/_search/template?&pretty
+{
+  "id":"H22_guardar_etiquetas_de_telefono",
+  "params":{
+   "idcliente":78403,
+   "idcampania":"180502_9_TP_CC"
+  }
+}
+
+POST _scripts/H22_guardar_etiquetas_de_telefono
+{
+   "script": {
+      "lang": "mustache",
+      "source": {
+         "stored_fields":"_id",
+         "query": {
+            "bool": {
+               "must": [
+                  {
+                     "match": {
+                        "idCliente":"{{idcliente}}"
+                     }
+                  },
+                  {
+                     "match": {
+                        "id_campania": "{{idcampania}}"
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
+
+POST  renovacionestopup/prospeccion/AWNPr03RF_O_ig9TzqhG/_update?pretty
+{
+  "doc": {
+      "tipo_telefono_actualizados":"value11",
+      "telefonos_actualizados":"value12",
+      "etiqueta_contacto_telefonos_actualizados":"value13",
+      "etiqueta_telefonos_actualizados":"value14"
+   }
+}
+
+
+
+
+
+
+
+### Historia 23. Etiquetar oferta 
+
+GET renovacionestopup/_search/template?&pretty
+{
+  "id":"H_23_etiquetar_oferta",
+  "params":{
+   "idcliente":78403,
+   "idcampania":"180502_9_TP_CC"
+  }
+}
+
+POST _scripts/H_23_etiquetar_oferta
+{
+   "script": {
+      "lang": "mustache",
+      "source": {
+         "stored_fields":"_id",
+         "query": {
+            "bool": {
+               "must": [
+                  {
+                     "match": {
+                        "idCliente":"{{idcliente}}"
+                     }
+                  },
+                  {
+                     "match": {
+                        "id_campaña": "{{idcampania}}"
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
+
+POST renovacionestopup/prospeccion/_search
+{
+  "query": {"match": {
+    "idCliente": 78403
+  }}
+}
+
+POST  renovacionestopup/prospeccion/7/_update?pretty
+{
+  "doc": {
+      "etiqueta_oferta":"value600",
+      "motivo_oferta":"value700",
+      "detalle_oferta":"value800"
+   }
+}
