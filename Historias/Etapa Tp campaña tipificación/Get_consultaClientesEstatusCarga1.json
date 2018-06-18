@@ -1,0 +1,7 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?&pretty
+{
+  "id": "Etapa_ListaMarketing",
+  "params": {
+    "idcampania": 1
+  }
+}

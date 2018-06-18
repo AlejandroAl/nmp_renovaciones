@@ -1,0 +1,7 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/AWPM3h3DF_O_ig9T1PuO/_update?pretty
+
+{
+  "doc": {
+    "estatus_cliente":"aceptado"
+  }
+}

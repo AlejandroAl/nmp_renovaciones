@@ -1,0 +1,61 @@
+POST https://{{ElasticURL}}/_scripts/Etapa_ListaMarketing
+
+{
+  
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "stored_fields": "_id",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "estatus_carga": 1
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{idcampania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "Clientes": {
+          "terms": {
+            "script": "doc['idCliente'].value"
+          }
+        }
+      }
+    }
+  }
+
+}

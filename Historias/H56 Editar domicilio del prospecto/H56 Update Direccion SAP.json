@@ -1,0 +1,12 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/AWPM3h3DF_O_ig9T1PuO/_update?pretty
+
+{
+  "doc": {
+  "SAP_calleDomicilio_cliente":"Paseo de la Reforma",
+  "SAP_estadoDomicilio":"Ciudad de Mexico",
+  "SAP_numeroDomicilio_cliente":"135",
+  "SAP_municipioDomicilio":"Cuahtemoc",
+  "SAP_codigoPostalDomicilio": "09897",
+  "SAP_coloniaDomicilio":"Anzures"    
+  }  
+}

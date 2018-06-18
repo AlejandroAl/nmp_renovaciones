@@ -1,0 +1,9 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template
+
+{
+  "id": "H9_DatosCliente_xID",
+  "params":{
+    "id_cliente" : 26,
+    "id_campania":1
+  }
+}

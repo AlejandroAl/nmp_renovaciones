@@ -1,0 +1,89 @@
+POST https://{{ElasticURL}}/_scripts/H9_DatosCliente_xID
+
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+           {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "idCliente": "{{id_cliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{id_campania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "script_fields": {
+        "Nombre": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_nombre_cliente_1.keyword'].value"
+          }
+        },
+        "Nombre_2": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_nombre_cliente_2.keyword'].value"
+          }
+        },
+        "ApellidoPaterno": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_apellidoPaterno_cliente.keyword'].value"
+          }
+        },
+        "ApellidoMaterno": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_apellidoMaterno_cliente.keyword'].value"
+          }
+        },
+        "NumeroTelefonico": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_telefono_1.keyword'].value"
+          }
+        },
+        "Id_cliente": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['idCliente'].value"
+          }
+        }
+      }
+    }
+  }
+}

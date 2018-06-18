@@ -1,0 +1,64 @@
+POST https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos_SAP
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "idCliente": "{{id_Cliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{id_campania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "script_fields": {
+        "SAP_telefono1": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_telefono_1.keyword'].value"
+          }
+        },
+        "SAP_telefono2": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_telefono_2.keyword'].value"
+          }
+        }
+      }
+    }
+  }
+}

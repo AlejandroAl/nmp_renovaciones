@@ -1,0 +1,265 @@
+PUT http://{{ElasticURL}}/{{indiceTrazabilidad}}
+
+{
+
+  "mappings": {
+
+      "renovaciones": {
+
+        "dynamic": "strict",
+
+        "properties": {
+
+          "SAP_estatus_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "SAP_subestatus_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "estatus_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "estatus_seguimientoCartera": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "etapa_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "fecha_ultima_gestion_cliente": {
+
+            "type": "date"
+
+          },
+
+          "folio_BPM": {
+
+            "type": "long"
+
+          },
+
+          "folio_movilidad": {
+
+            "type": "long"
+
+          },
+
+          "idCliente": {
+
+            "type": "long"
+
+          },
+
+          "idProspeccion": {
+
+            "type": "long"
+
+          },
+
+          "id_campania": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "macroproceso_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "nombre_lista_marketing": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "numeroContrato": {
+
+            "type": "long"
+
+          },
+
+          "numero_solicitud": {
+
+            "type": "long"
+
+          },
+
+          "pantalla_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "seguimientoCartera": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "subetapa_cliente": {
+
+            "type": "text",
+
+            "fields": {
+
+              "keyword": {
+
+                "type": "keyword",
+
+                "ignore_above": 256
+
+              }
+
+            }
+
+          },
+
+          "flag_prospecto": {
+
+            "type": "boolean"
+
+          }
+
+        }
+
+      }
+
+    }
+
+}
