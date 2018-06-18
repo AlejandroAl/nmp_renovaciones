@@ -1,0 +1,32 @@
+{
+  
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "stored_fields": "_id",
+      "query": {
+        "bool": {
+          "must": [
+            {
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
+                  },
+                  {
+                    "match": {
+                      "idCliente": "{{idcliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{idcampania}}"
+                    }
+                  }
+                ]
+              }
+
+      }
+    }
+  }
+
+}

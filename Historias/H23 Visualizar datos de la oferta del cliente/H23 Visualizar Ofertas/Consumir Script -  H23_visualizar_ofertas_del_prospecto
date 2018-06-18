@@ -1,0 +1,7 @@
+{
+  "id" : "H23_visualizar_ofertas_del_prospecto",
+  "params": {
+    "idcliente": 25,
+    "idcampania": 1
+  }
+}

@@ -1,0 +1,31 @@
+GET _scripts/H23_IDs_renovaciones_idCl_idCam
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "stored_fields": "_id",
+      "query": {
+        "bool": {
+          "must": [
+            {
+
+                    "match": {
+                      "idCliente": "{{idcliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{idcampania}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "flag_prospecto": true
+                      }
+                  }
+                ]
+              }
+      }
+    }
+  }
+}

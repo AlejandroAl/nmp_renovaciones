@@ -1,0 +1,10 @@
+{
+  "id": "Buzon",
+  "params": {
+    "parametros": "",
+    "fecha_ultima_gestion_inicio":"2013",
+    "fecha_ultima_gestion_fin":"2029",
+    "fecha_prospeccion_inicio":"2013",
+    "fecha_prospeccion_fin":"2026"
+  }
+}

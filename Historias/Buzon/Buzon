@@ -1,0 +1,43 @@
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "query_string": {
+                "query": "{{parametros}}{{^parametros}}(flag_prospecto:false OR flag_prospecto:true){{/parametros}}",
+                "default_operator": "AND"
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "range": {
+                      "fecha_ultima_gestion_cliente": {
+                        "gte": "{{fecha_ultima_gestion_inicio}}{{^fecha_ultima_gestion_inicio}}1900{{/fecha_ultima_gestion_inicio}}",
+                        "lte": "{{fecha_ultima_gestion_fin}}{{^fecha_ultima_gestion_fin}}1900{{/fecha_ultima_gestion_fin}}",
+                        "format": "dd/MM/yyyy||yyyy"
+                      }
+                    }
+                  },
+                  {
+                    "range": {
+                      "fecha_prospeccion": {
+                        "gte": "{{fecha_inicio_prospeccion}}{{^fecha_inicio_prospeccion}}1900{{/fecha_inicio_prospeccion}}",
+                        "lte": "{{fecha_fin_prospeccion}}{{^fecha_fin_prospeccion}}1900{{/fecha_fin_prospeccion}}",
+                        "format": "dd/MM/yyyy||yyyy"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

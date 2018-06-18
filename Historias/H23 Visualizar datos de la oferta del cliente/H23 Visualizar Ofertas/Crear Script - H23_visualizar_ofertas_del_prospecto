@@ -1,0 +1,89 @@
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "_source": [
+        "montoOfertaAutomatica_1",
+        "numeroPagosOfertaAutomatica_1",
+        "tasaOfertaAutomatica_1",
+        "pagoOfertaAutomatica_1",
+        "montoOfertaAutomatica_2",
+        "numeroPagosOfertaAutomatica_2",
+        "tasaOfertaAutomatica_2",
+        "pagoOfertaAutomatica_2",
+        "montoOfertaAutomatica_3",
+        "numeroPagosOfertaAutomatica_3",
+        "tasaOfertaAutomatica_3",
+        "pagoOfertaAutomatica_3",
+        "montoOfertaAutomatica_4",
+        "numeroPagosOfertaAutomatica_4",
+        "tasaOfertaAutomatica_4",
+        "pagoOfertaAutomatica_4",
+        "montoNuevaOfertaAutomatica",
+        "numeroPagosNuevaOfertaAutomatica",
+        "tasaOfertaNuevaOfertaAutomatica",
+        "pagoOfertaNuevaOfertaAutomatica",
+        "montoOfertaAutomaticaMaxima_1",
+        "numeroPagosOfertaAutomaticaMaxima_1",
+        "tasaOfertaAutomaticaMaxima_1",
+        "pagoOfertaAutomaticaMaxima_1",
+        "montoOfertaAutomaticaMaxima_2",
+        "numeroPagosOfertaAutomaticaMaxima_2",
+        "tasaOfertaAutomaticaMaxima_2",
+        "pagoOfertaAutomaticaMaxima_2",
+        "montoOfertaAutomaticaMaxima_3",
+        "numeroPagosOfertaAutomaticaMaxima_3",
+        "tasaOfertaAutomaticaMaxima_3",
+        "pagoOfertaAutomaticaMaxima_3",
+        "montoOfertaAutomaticaMaxima_4",
+        "numeroPagosOfertaAutomaticaMaxima_4",
+        "tasaOfertaAutomaticaMaxima_4",
+        "pagoOfertaAutomaticaMaxima_4",
+        "montoNuevaOfertaAutomaticaMaxima",
+        "numeroPagosNuevaOfertaAutomaticaMaxima",
+        "tasaOfertaNuevaOfertaAutomaticaMaxima",
+        "pagoOfertaNuevaOfertaAutomaticaMaxima",
+        "montoOfertaRequeridoProspecto",
+        "numeroPagosOfertaRequeridoProspecto",
+        "tasaOfertaRequeridoProspecto",
+        "pagoOfertaRequeridoProspecto",
+        "ofertaSeleccionada",
+        "ITA_tasa_1",
+        "ITA_tasa_2",
+        "ITA_tasa_3",
+        "ITA_tasa_4",
+        "ITA_monto",
+        "ITA_numeroPagos_1",
+        "ITA_numeroPagos_2",
+        "ITA_numeroPagos_3",
+        "ITA_numeroPagos_4",
+        "flag_ruta",
+        "autoriza_oferta",
+        "etiqueta_oferta",
+        "motivo_oferta",
+        "detalle_oferta"
+      ],
+      "query": {
+        "bool": {
+          "must": [
+            {
+                    "match": {
+                      "idCliente": "{{idcliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{idcampania}}"
+                    }
+                  },
+                  {
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
+                  }
+                ]
+              }
+      }
+    }
+  }
+}

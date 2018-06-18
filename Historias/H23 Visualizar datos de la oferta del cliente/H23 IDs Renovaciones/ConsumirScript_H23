@@ -1,0 +1,7 @@
+{
+  "id" : "H23_IDs_renovaciones_idCl_idCam",
+  "params": {
+    "idcliente": 25,
+    "idcampania": 1
+  }
+}
