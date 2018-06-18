@@ -1,0 +1,1849 @@
+{
+	"info": {
+		"_postman_id": "36706c44-c6e9-48a3-b2b2-8f15d79f4632",
+		"name": "Untitled Collection",
+		"description": "This is an automatic testing script for elasticsearch.\n\nURL ElasticSearch: 0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Paso2FlitradoClienteMarketing",
+			"description": null,
+			"item": [
+				{
+					"name": "paso2_filtradoCliente_marketing-Create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"_source\": \"idCliente\",\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n              \"match\": {\n                \"flag_prospecto\": true\n              }\n            },\n            {\n              \"match\": {\n                \"SAP_codigoPostalDomicilio\": \"{{SAP_codigoPostalDomicilio}}\"\n              }\n            },\n            {\n              \"match\": {\n                \"contrato\": \"{{contrato}}\"\n              }\n            },\n            {\n              \"match\": {\n                \"SAP_telefono_1\": \"{{SAP_telefono_1}}\"\n              }\n            },\n            {\n              \"match\": {\n                \"SAP_telefono_2\": \"{{SAP_telefono_2}}\"\n              }\n            },\n            {\n              \"match\": {\n                \"telefonos_actualizados\": \"{{telefonos_actualizados}}\"\n              }\n            }\n          ]\n        }\n      },\n      \"size\": 0,\n      \"aggs\": {\n        \"idClientes\": {\n          \"terms\": {\n            \"script\": {\n              \"source\": \"doc['idCliente'].value\",\n              \"lang\": \"painless\"\n            }\n          }\n        }\n      }\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/paso2_filtradoCliente_marketing",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"paso2_filtradoCliente_marketing"
+							]
+						},
+						"description": "Crea el script para la cosulta paso2_filtradoCliente_marketing"
+					},
+					"response": []
+				},
+				{
+					"name": "paso2_filtradoCliente-Consume",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3407c4a1-3518-4b73-9a38-421b5ad289f9",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Request timeout\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.timed_out).to.eql(false);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Total number of hits 124\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.hits.total).to.eql(124);",
+									"})",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\":\"paso2_filtradoCliente_marketing\",\n  \"params\": {\n    \"SAP_codigoPostalDomicilio\":\"55908\",\n    \"contrato\":123,\n    \"SAP_telefono_1\":\"559102938\",\n    \"SAP_telefono_2\":\"558912393\",\n    \"telefonos_actualizados\":\"512901293@5590982378@551232467\"\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"_search",
+								"template"
+							]
+						},
+						"description": "Consume el el paso 2 del filtrado del Cliente. "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H21 Crear nuevo teléfono del prospecto",
+			"description": null,
+			"item": [
+				{
+					"name": "CreateScript-H21_IDs_nuevoTelefonos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"stored_fields\": \"_id\",\n      \"_source\": \"idCliente\",\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  },\n                  {\n                    \"match\": {\n                      \"idCliente\": \"{{idcliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  }\n                ]\n              }\n      }\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H21_IDs_nuevoTelefonos",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H21_IDs_nuevoTelefonos"
+							]
+						},
+						"description": "Crea el script para la historia 21"
+					},
+					"response": []
+				},
+				{
+					"name": "Consume-H21_IDs_nuevoTelefonos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fc098d10-bed0-43af-9dbc-98519e2822b7",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Request timeout\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.timed_out).to.eql(false);",
+									"});",
+									"",
+									"",
+									"pm.test(\"ID recibido igual a AWPM3ouYF_O_ig9T1P24\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.hits.hits[0]._id).to.eql(\"AWPM3ouYF_O_ig9T1P24\");",
+									"})"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"H21_IDs_nuevoTelefonos\",\n  \"params\": {\n    \"idcampania\": 1,\n    \"idcliente\": 25 \n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"_search",
+								"template"
+							]
+						},
+						"description": "Consume el servicio de nuevos teléfonos para la historia 21. "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H18 Datos generales del prospecto",
+			"description": "Historia 18. Datos generales del cliente en todas las pantallas",
+			"item": [
+				{
+					"name": "H18H19 Obtener IDs",
+					"description": null,
+					"item": [
+						{
+							"name": "Crear Script - H18H19_obtener_IDs",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123456Nmp",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "BPMrenovaciones",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"stored_fields\": \"_id\",\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n\n                    \"match\": {\n                      \"idCliente\": \"{{idCliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{id_campania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n              }\n      }\n    }\n  }\n}"
+								},
+								"url": {
+									"raw": "https://{{ElasticURL}}/_scripts/H18H19_obtener_IDs",
+									"protocol": "https",
+									"host": [
+										"{{ElasticURL}}"
+									],
+									"path": [
+										"_scripts",
+										"H18H19_obtener_IDs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consumir - H18H19_obtener_IDs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9a608566-2f24-4ebe-938e-d5b96ad51143",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Request timeout\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.timed_out).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"ID recibido igual a AWPM3ouYF_O_ig9T1P24\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.hits.hits[0]._id).to.eql(\"AWPM3ouYF_O_ig9T1P24\");",
+											"})"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123456Nmp",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "BPMrenovaciones",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"H18H19_obtener_IDs\",\n  \"params\": {\n    \"id_campania\": 1,\n    \"idCliente\": 25 \n  }\n}"
+								},
+								"url": {
+									"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?pretty",
+									"protocol": "https",
+									"host": [
+										"{{ElasticURL}}"
+									],
+									"path": [
+										"{{IndiceRenovTopUp}}",
+										"_search",
+										"template"
+									],
+									"query": [
+										{
+											"key": "pretty",
+											"value": null
+										},
+										{
+											"key": null,
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "H32 Generar número de folio",
+			"description": "Objetivo: Actualizar/Consultar el   número de folio cuando se etiqueta la oferta para poder dar seguimiento al prospecto.\nEntrada:\n    • id_cliente\n    • id_campania\nDonde:\nId_cliente es el id del del cliente que se desea identificar.\nId_campania es el id de la campaña donde se buscara el cliente por su id.\n\nSalida:\n    • numero_solicitud",
+			"item": [
+				{
+					"name": "H32_Obtener_Numero_solicitud",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n                    \"match\": {\n                      \"idCliente\": \"{{idcliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n              }\n      },\n      \"script_fields\": {\n        \"Numero_Solicitud\": {\n          \"script\": {\n            \"lang\": \"painless\",\n            \"source\": \"doc['numero_solicitud'].value\"\n          }\n        }\n      }\n    }\n  }\n\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H32_Obtener_NumeroSolicitud",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H32_Obtener_NumeroSolicitud"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "H32_query_ObtenerNumeroSolicitud",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd2e5883-97d7-4364-8c0b-3a03e5196cf1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Request timeout\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.timed_out).to.eql(false);",
+									"});",
+									"",
+									"",
+									"pm.test(\"ID recibido igual a AWPM3ouYF_O_ig9T1P24\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.hits.hits[0]._id).to.eql(\"AWPM3ouYF_O_ig9T1P24\");",
+									"})",
+									"",
+									"",
+									"pm.test(\"Numero de Solicitud encontrada igual a 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.hits.hits[0].fields.Numero_Solicitud[0]).to.eql(1);",
+									"})"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\" : \"H32_Obtener_NumeroSolicitud\",\n  \"params\": {\n    \"idcliente\": 25,\n    \"idcampania\": 1\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"_search",
+								"template"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H23 Visualizar datos de la oferta del cliente",
+			"description": null,
+			"item": [
+				{
+					"name": "H23 IDs Renovaciones",
+					"description": null,
+					"item": [
+						{
+							"name": "Crear Script - H23_IDs_renovaciones_idCl_idCam",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"stored_fields\": \"_id\",\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n\n                    \"match\": {\n                      \"idCliente\": \"{{idcliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n              }\n      }\n    }\n  }\n}"
+								},
+								"url": {
+									"raw": "https://{{ElasticURL}}/_scripts/H23_IDs_renovaciones_idCl_idCam",
+									"protocol": "https",
+									"host": [
+										"{{ElasticURL}}"
+									],
+									"path": [
+										"_scripts",
+										"H23_IDs_renovaciones_idCl_idCam"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consumir Script - H23_IDs_renovaciones_idCl_idCam",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "8e1082f7-ebaa-4aa3-9f0b-ef7489f7aeaf",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "8dc50d35-4d7a-4b3b-b8f0-218d2487d39d",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Request timeout\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.timed_out).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"ID recibido igual a AWPM3ouYF_O_ig9T1P24\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.hits.hits[0]._id).to.eql(\"AWPM3ouYF_O_ig9T1P24\");",
+											"})",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123456Nmp",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "BPMrenovaciones",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\" : \"H23_IDs_renovaciones_idCl_idCam\",\n  \"params\": {\n    \"idcliente\": 25,\n    \"idcampania\": 1\n  }\n}"
+								},
+								"url": {
+									"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template",
+									"protocol": "https",
+									"host": [
+										"{{ElasticURL}}"
+									],
+									"path": [
+										"{{IndiceRenovTopUp}}",
+										"_search",
+										"template"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "H23 Visualizar Ofertas",
+					"description": null,
+					"item": [
+						{
+							"name": "Crear Script - H23_visualizar_ofertas_del_prospecto",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123456Nmp",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "BPMrenovaciones",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"_source\": [\n        \"montoOfertaAutomatica_1\",\n        \"numeroPagosOfertaAutomatica_1\",\n        \"tasaOfertaAutomatica_1\",\n        \"pagoOfertaAutomatica_1\",\n        \"montoOfertaAutomatica_2\",\n        \"numeroPagosOfertaAutomatica_2\",\n        \"tasaOfertaAutomatica_2\",\n        \"pagoOfertaAutomatica_2\",\n        \"montoOfertaAutomatica_3\",\n        \"numeroPagosOfertaAutomatica_3\",\n        \"tasaOfertaAutomatica_3\",\n        \"pagoOfertaAutomatica_3\",\n        \"montoOfertaAutomatica_4\",\n        \"numeroPagosOfertaAutomatica_4\",\n        \"tasaOfertaAutomatica_4\",\n        \"pagoOfertaAutomatica_4\",\n        \"montoNuevaOfertaAutomatica\",\n        \"numeroPagosNuevaOfertaAutomatica\",\n        \"tasaOfertaNuevaOfertaAutomatica\",\n        \"pagoOfertaNuevaOfertaAutomatica\",\n        \"montoOfertaAutomaticaMaxima_1\",\n        \"numeroPagosOfertaAutomaticaMaxima_1\",\n        \"tasaOfertaAutomaticaMaxima_1\",\n        \"pagoOfertaAutomaticaMaxima_1\",\n        \"montoOfertaAutomaticaMaxima_2\",\n        \"numeroPagosOfertaAutomaticaMaxima_2\",\n        \"tasaOfertaAutomaticaMaxima_2\",\n        \"pagoOfertaAutomaticaMaxima_2\",\n        \"montoOfertaAutomaticaMaxima_3\",\n        \"numeroPagosOfertaAutomaticaMaxima_3\",\n        \"tasaOfertaAutomaticaMaxima_3\",\n        \"pagoOfertaAutomaticaMaxima_3\",\n        \"montoOfertaAutomaticaMaxima_4\",\n        \"numeroPagosOfertaAutomaticaMaxima_4\",\n        \"tasaOfertaAutomaticaMaxima_4\",\n        \"pagoOfertaAutomaticaMaxima_4\",\n        \"montoNuevaOfertaAutomaticaMaxima\",\n        \"numeroPagosNuevaOfertaAutomaticaMaxima\",\n        \"tasaOfertaNuevaOfertaAutomaticaMaxima\",\n        \"pagoOfertaNuevaOfertaAutomaticaMaxima\",\n        \"montoOfertaRequeridoProspecto\",\n        \"numeroPagosOfertaRequeridoProspecto\",\n        \"tasaOfertaRequeridoProspecto\",\n        \"pagoOfertaRequeridoProspecto\",\n        \"ofertaSeleccionada\",\n        \"ITA_tasa_1\",\n        \"ITA_tasa_2\",\n        \"ITA_tasa_3\",\n        \"ITA_tasa_4\",\n        \"ITA_monto\",\n        \"ITA_numeroPagos_1\",\n        \"ITA_numeroPagos_2\",\n        \"ITA_numeroPagos_3\",\n        \"ITA_numeroPagos_4\",\n        \"flag_ruta\",\n        \"autoriza_oferta\",\n        \"etiqueta_oferta\",\n        \"motivo_oferta\",\n        \"detalle_oferta\"\n      ],\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n                    \"match\": {\n                      \"idCliente\": \"{{idcliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n              }\n      }\n    }\n  }\n}"
+								},
+								"url": {
+									"raw": "https://{{ElasticURL}}/renovacionestopup_test2/_sripts/H23_visualizar_ofertas_del_prospecto",
+									"protocol": "https",
+									"host": [
+										"{{ElasticURL}}"
+									],
+									"path": [
+										"renovacionestopup_test2",
+										"_sripts",
+										"H23_visualizar_ofertas_del_prospecto"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consumir Script -  H23_visualizar_ofertas_del_prospecto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b658a448-2191-4447-a64f-9df4d7afca74",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Request timeout\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.timed_out).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"ID recibido igual a AWPM3ouYF_O_ig9T1P24\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.hits.hits[0]._id).to.eql(\"AWPM3ouYF_O_ig9T1P24\");",
+											"})",
+											"",
+											"",
+											"pm.test(\"Valida los detalles de la oferta recibidos\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.hits.hits[0]._source.tasaOfertaRequeridoProspecto).to.eql(12);",
+											"    pm.expect(jsonData.hits.hits[0]._source.montoOfertaRequeridoProspecto).to.eql(100);",
+											"    pm.expect(jsonData.hits.hits[0]._source.montoOfertaAutomaticaMaxima_4).to.eql(500);",
+											"})",
+											"",
+											"",
+											"",
+											"",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123456Nmp",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "BPMrenovaciones",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\" : \"H23_visualizar_ofertas_del_prospecto\",\n  \"params\": {\n    \"idcliente\": 25,\n    \"idcampania\": 1\n  }\n}"
+								},
+								"url": {
+									"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template",
+									"protocol": "https",
+									"host": [
+										"{{ElasticURL}}"
+									],
+									"path": [
+										"{{IndiceRenovTopUp}}",
+										"_search",
+										"template"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "H5 resultados prospección",
+			"description": "Permite mostrar el total de prospectos en los subproductos",
+			"item": [
+				{
+					"name": "H5_ResultadosProspeccion",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"size\": 0,\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n\n            }\n          ]\n        }\n      },\n      \"aggs\": {\n        \"TotalClientesCampaña\": {\n          \"value_count\": {\n            \"field\": \"idCliente\"\n          }\n        },\n        \"TotalSubEtapa_Renovacion\": {\n          \"filter\": {\n            \"term\": {\n              \"subProductoOferta.keyword\": \"{{subProductoOferta}}\"\n            }\n          }\n        },\n        \"TotalSubEtapa_TopUp\": {\n          \"filter\": {\n            \"term\": {\n              \"subProductoOferta\": \"{{subProducto2}}\"\n            }\n          }\n        }\n      }\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H5_ResultadosProspeccion",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H5_ResultadosProspeccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "H5_GET_ResultadosProspeccion",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"H5_ResultadosProspeccion\",\n  \"params\": {\n    \"id_campania\": \"1\",\n    \"subProductoOferta\": \"Renovacion\",\n    \"subProducto2\": \"TopUp\"\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"_search",
+								"template"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								},
+								{
+									"key": null,
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "123456Nmp",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "BPMrenovaciones",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a4fdb161-c9ff-4e49-b558-729c1cba977e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7cb6e932-be13-4d1f-99fc-83e882449095",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Consultar Información",
+			"description": null,
+			"item": [
+				{
+					"name": "H9_DatosCliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"bool\": {\n        \"must\": [\n          {\n                  \"match\": {\n                    \"idCliente\": \"{{id_cliente}}\"\n                  }\n                },\n                {\n                  \"match\": {\n                    \"id_campania\": \"{{id_campania}}\"\n                  }\n                },\n                {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                }\n              ]\n            }\n\n    }\n  }\n\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H9_DatosCliente_xID",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H9_DatosCliente_xID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "H9_Get_Datos_Cliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"H9_DatosCliente_xID\",\r\n  \"params\":{\r\n    \"id_cliente\" : 25,\r\n    \"id_campania\":1\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"_search",
+								"template"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H20 Listado de teléfonos del prospecto",
+			"description": null,
+			"item": [
+				{
+					"name": "H20_consulta_telefonos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n\n                    \"match\": {\n                      \"idCliente\": \"{{id_Cliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{id_campania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n              }\n      },\n      \"script_fields\": {\n        \"SAP_telefono1\": {\n          \"script\": {\n            \"lang\": \"painless\",\n            \"source\": \"doc['SAP_telefono_1.keyword'].value\"\n          }\n        },\n        \"SAP_telefono2\": {\n          \"script\": {\n            \"lang\": \"painless\",\n            \"source\": \"doc['SAP_telefono_2.keyword'].value\"\n          }\n        }\n      }\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos_SAP",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H20_ObtenerTelefonos_SAP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "H20_Query_telefonos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"H20_ObtenerTelefonos_SAP\",\n  \"params\": {\n    \"id_Cliente\": 26,\n    \"id_campania\": \"1\"\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"_search",
+								"template"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								},
+								{
+									"key": null,
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H9 Enlace de llama para confirmar datos",
+			"description": null,
+			"item": [
+				{
+					"name": "H9_datos_cliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n\n                    \"match\": {\n                      \"idCliente\": \"{{id_cliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{id_campania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n              }\n\n      }\n    }\n  }\n\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H9_DatosCliente_xID",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H9_DatosCliente_xID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "H9_Query_DatosCliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"H9_DatosCliente_xID\",\r\n  \"params\":{\r\n    \"id_cliente\" : 26,\r\n    \"id_campania\":1\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"_search",
+								"template"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Etapa Lista Marketing",
+			"description": null,
+			"item": [
+				{
+					"name": "Crear Script - Etapa Lista Marketing Paso 1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"_source\": [\n        \"idCliente\"\n      ],\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  },\n                  {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  }\n                ]\n        }\n      }\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/etapa_lista_marketing_paso_1",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"etapa_lista_marketing_paso_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consumir - Etapa Lista Marketing Paso 1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"etapa_lista_marketing_paso_1\",\n  \"params\": {\n    \"idcampania\": 1\n  }\n}\n"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"_search",
+								"template"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "123456Nmp",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "BPMrenovaciones",
+						"type": "string"
+					}
+				]
+			}
+		},
+		{
+			"name": "Etapa Tp campaña tipificación",
+			"description": null,
+			"item": [
+				{
+					"name": "ConsultaClienteEstatusCarga1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"stored_fields\": \"_id\",\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  },\n                  {\n                    \"match\": {\n                      \"estatus_carga\": 1\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  }\n                ]\n              }\n\n      },\n      \"aggs\": {\n        \"Clientes\": {\n          \"terms\": {\n            \"script\": \"doc['idCliente'].value\"\n          }\n        }\n      }\n    }\n  }\n\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/Etapa_ListaMarketing",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"Etapa_ListaMarketing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_consultaClientesEstatusCarga1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"Etapa_ListaMarketing\",\r\n  \"params\": {\r\n    \"idcampania\": 1\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"_search",
+								"template"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								},
+								{
+									"key": null,
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H22 guardar etiquetas de telefono",
+			"description": null,
+			"item": [
+				{
+					"name": "H22_guardar_etiquetas_de_telefono",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"stored_fields\": \"_id\",\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n                  \t\"match\": {\n                  \t\t\"flag_prospecto\": true\n                  \t\t}\n                  },\n                  {\n                    \"match\": {\n                      \"idCliente\": \"{{idcliente}}\"\n                    }\n                  },\n                  {\n                    \"match\": {\n                      \"id_campania\": \"{{idcampania}}\"\n                    }\n                  }\n                ]\n              }\n\n      }\n    }\n  }\n\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/H22_guardar_etiquetas_de_telefono",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"H22_guardar_etiquetas_de_telefono"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "H22_Query_guardaEtiquetas_telefonos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\":\"H22_guardar_etiquetas_de_telefono\",\r\n  \"params\":{\r\n   \"idcliente\":26,\r\n   \"idcampania\":\"1\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"_search",
+								"template"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								},
+								{
+									"key": null,
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H47 Siguiente Etapa",
+			"description": null,
+			"item": [
+				{
+					"name": "H47 Update Siguiente Etapa",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"doc\": {\n  \"etiqueta_oferta\": \"Venta\",\n  \"motivo_oferta\":\"No aplica opcion\",\n  \"detalle_oferta\":null,\n  \"ofertaSeleccionada\":\"OfertaAutomaticaMaxima_1\"\n  \t}\n}\n"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/AWPM3h3DF_O_ig9T1PuO/_update?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"AWPM3h3DF_O_ig9T1PuO",
+								"_update"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						},
+						"description": "Actualiza los siguientes registros del indice renovacionestopup.\n\n\nEntrada:\n\n    • idCliente\n    • id_campania\n\nSalida:\n    • etiqueta_oferta\n    • motivo_oferta\n    • detalle_oferta\n    • ofertaSeleccionada"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "H56 Editar domicilio del prospecto",
+			"description": null,
+			"item": [
+				{
+					"name": "H56 Update Direccion SAP",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"doc\": {\n\t\"SAP_calleDomicilio_cliente\":\"Paseo de la Reforma\",\n\t\"SAP_estadoDomicilio\":\"Ciudad de Mexico\",\n\t\"SAP_numeroDomicilio_cliente\":\"135\",\n\t\"SAP_municipioDomicilio\":\"Cuahtemoc\",\n\t\"SAP_codigoPostalDomicilio\": \"09897\",\n\t\"SAP_coloniaDomicilio\":\"Anzures\"    \n\t}\t\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/AWPM3h3DF_O_ig9T1PuO/_update?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"AWPM3h3DF_O_ig9T1PuO",
+								"_update"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						},
+						"description": "Realiza la actualización de la dirección de los registros SAP del índice de RenovacionesTopUp:\n\nEntrada:\n\n    • idCliente\n    • id_campania\n\nSalida:\n    • SAP_calleDomicilio_cliente\n    • SAP_estadoDomicilio\n    • SAP_numeroDomicilio_cliente\n    • SAP_municipioDomicilio\n    • SAP_codigoPostalDomicilio\n    • SAP_coloniaDomicilio\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buzon",
+			"description": null,
+			"item": [
+				{
+					"name": "Buzon",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"script\": {\n    \"lang\": \"mustache\",\n    \"source\": {\n      \"query\": {\n        \"bool\": {\n          \"must\": [\n            {\n              \"query_string\": {\n                \"query\": \"{{parametros}}{{^parametros}}(flag_prospecto:false OR flag_prospecto:true){{/parametros}}\",\n                \"default_operator\": \"AND\"\n              }\n            },\n            {\n              \"bool\": {\n                \"should\": [\n                  {\n                    \"range\": {\n                      \"fecha_ultima_gestion_cliente\": {\n                        \"gte\": \"{{fecha_ultima_gestion_inicio}}{{^fecha_ultima_gestion_inicio}}1900{{/fecha_ultima_gestion_inicio}}\",\n                        \"lte\": \"{{fecha_ultima_gestion_fin}}{{^fecha_ultima_gestion_fin}}1900{{/fecha_ultima_gestion_fin}}\",\n                        \"format\": \"dd/MM/yyyy||yyyy\"\n                      }\n                    }\n                  },\n                  {\n                    \"range\": {\n                      \"fecha_prospeccion\": {\n                        \"gte\": \"{{fecha_inicio_prospeccion}}{{^fecha_inicio_prospeccion}}1900{{/fecha_inicio_prospeccion}}\",\n                        \"lte\": \"{{fecha_fin_prospeccion}}{{^fecha_fin_prospeccion}}1900{{/fecha_fin_prospeccion}}\",\n                        \"format\": \"dd/MM/yyyy||yyyy\"\n                      }\n                    }\n                  }\n                ]\n              }\n            }\n          ]\n        }\n      }\n    }\n  }\n}\n"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/_scripts/Buzon",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"_scripts",
+								"Buzon"
+							]
+						},
+						"description": "Query del Buzon"
+					},
+					"response": []
+				},
+				{
+					"name": "Call Buzon",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "epvazquez",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"Buzon\",\n  \"params\": {\n    \"parametros\": \"\",\n    \"fecha_ultima_gestion_inicio\":\"2013\",\n    \"fecha_ultima_gestion_fin\":\"2029\",\n    \"fecha_prospeccion_inicio\":\"2013\",\n    \"fecha_prospeccion_fin\":\"2026\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/renovacionestopup_test2/prospeccion/_search/template",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"renovacionestopup_test2",
+								"prospeccion",
+								"_search",
+								"template"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "12345Nmp",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "epvazquez",
+						"type": "string"
+					}
+				]
+			}
+		},
+		{
+			"name": "H75 Guardar Solicitud",
+			"description": null,
+			"item": [
+				{
+					"name": "H75 Guarda Estatus Cliente Solicitud",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456Nmp",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "BPMrenovaciones",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"doc\": {\n    \"estatus_cliente\":\"aceptado\"\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/AWPM3h3DF_O_ig9T1PuO/_update?pretty",
+							"protocol": "https",
+							"host": [
+								"{{ElasticURL}}"
+							],
+							"path": [
+								"{{IndiceRenovTopUp}}",
+								"prospeccion",
+								"AWPM3h3DF_O_ig9T1PuO",
+								"_update"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						},
+						"description": "Guarda el estatus del cliente para indicar que la solicitud se completó. "
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "123456Nmp",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "BPMrenovaciones",
+						"type": "string"
+					}
+				]
+			}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a09eee0f-88cc-4d0e-900b-bf41d57724cb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3bec8e4f-3b2e-49c9-b5f3-8182d277844f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "323ed9c5-54d1-4352-ab60-83b9280a53c3",
+			"key": "ElasticURL",
+			"value": "0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "8bd76d39-406f-4d52-9872-611a83fa15e7",
+			"key": "IndiceRenovTopUp",
+			"value": "renovacionestopup_test2",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "72338b4c-89fa-43b9-b825-0fde7f79934a",
+			"key": "_id",
+			"value": "1",
+			"type": "string",
+			"description": ""
+		}
+	]
+}

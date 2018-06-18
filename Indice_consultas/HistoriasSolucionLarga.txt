@@ -1,0 +1,141 @@
+---------------Historia 47 ------------------------------
+POST _scripts/H47_ids_clientes
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "stored_fields": "_id",
+      "_source":["idCliente","id_campania"],
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "bool": {
+                      "must": [
+                        {
+                          "bool": {
+                            "should": [
+                              {
+                                "match": {
+                                  "etapa_cliente": "contratado"
+                                }
+                              },
+                              {
+                                "match": {
+                                  "etapa_cliente": "solicitado"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "match": {
+                            "estatus_cliente": "rechazado"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "bool": {
+                            "must_not": [
+                              {
+                                "exists": {
+                                  "field": "folio_BPM"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "bool": {
+                            "must": [
+                              {
+                                "match": {
+                                  "estatus_seguimientoCartera": "terminado"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "idCliente": "{{idcliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{idcampania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
+
+
+
+POST renovacionestopup/prospeccion/_search/template
+{
+  "id":"H47_ids_clientes",
+  "params":{
+    "idcliente":503,
+    "idcampania":"1"
+  }
+}
+
+
+POST renovacionestopup/prospeccion/AWNkkN_YF_O_ig9TH5eA/_update
+{
+  "doc": {
+    "etiqueta_oferta":"Venta o No Venta",
+    "ofertaSeleccionada":"Oferta requerida por el prospoecto.",
+    "motivo_oferta":"Algun motivo",
+    "detalle_oferta":"detalle Oferta"
+  }
+}
+
+
+
+
