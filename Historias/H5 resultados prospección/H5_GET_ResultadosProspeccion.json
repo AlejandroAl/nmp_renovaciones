@@ -1,0 +1,10 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?&pretty
+
+{
+  "id": "H5_ResultadosProspeccion",
+  "params": {
+    "id_campania": "1",
+    "subProductoOferta": "Renovacion",
+    "subProducto2": "TopUp"
+  }
+}

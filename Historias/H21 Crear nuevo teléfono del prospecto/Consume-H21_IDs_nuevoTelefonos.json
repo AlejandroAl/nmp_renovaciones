@@ -1,0 +1,9 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template
+
+{
+  "id": "H21_IDs_nuevoTelefonos",
+  "params": {
+    "idcampania": 1,
+    "idcliente": 25 
+  }
+}

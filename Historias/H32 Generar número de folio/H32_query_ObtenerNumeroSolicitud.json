@@ -1,0 +1,9 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template
+
+{
+  "id" : "H32_Obtener_NumeroSolicitud",
+  "params": {
+    "idcliente": 25,
+    "idcampania": 1
+  }
+}

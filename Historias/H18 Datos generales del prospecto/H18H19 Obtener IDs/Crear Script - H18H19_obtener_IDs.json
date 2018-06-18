@@ -1,0 +1,51 @@
+POST https://{{ElasticURL}}/_scripts/H18H19_obtener_IDs
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "stored_fields": "_id",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "idCliente": "{{idCliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{id_campania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

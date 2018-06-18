@@ -1,0 +1,59 @@
+{
+  
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "idCliente": "{{idcliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{idcampania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "script_fields": {
+        "Numero_Solicitud": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['numero_solicitud'].value"
+          }
+        }
+      }
+    }
+  }
+
+}

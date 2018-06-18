@@ -1,0 +1,12 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/_search/template
+
+{
+  "id":"paso2_filtradoCliente_marketing",
+  "params": {
+    "SAP_codigoPostalDomicilio":"55908",
+    "contrato":123,
+    "SAP_telefono_1":"559102938",
+    "SAP_telefono_2":"558912393",
+    "telefonos_actualizados":"512901293@5590982378@551232467"
+  }
+}

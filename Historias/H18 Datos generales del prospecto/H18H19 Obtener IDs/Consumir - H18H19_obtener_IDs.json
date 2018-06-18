@@ -1,0 +1,8 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?&pretty
+{
+  "id": "H18H19_obtener_IDs",
+  "params": {
+    "id_campania": 1,
+    "idCliente": 25 
+  }
+}

@@ -1,0 +1,68 @@
+POST https://{{ElasticURL}}/_scripts/H5_ResultadosProspeccion
+
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "size": 0,
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "SAP_estatus_cliente": 37
+                    }
+                  }
+                ],
+                "must_not": [
+                  {
+                    "match": {
+                      "SAP_subestatus_cliente": {
+                        "query": "(40) OR (41)"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "id_campania": "{{id_campania}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "TotalClientesCampaña": {
+          "value_count": {
+            "field": "idCliente"
+          }
+        },
+        "TotalSubEtapa_Renovacion": {
+          "filter": {
+            "term": {
+              "subProductoOferta.keyword": "{{subProductoOferta}}"
+            }
+          }
+        },
+        "TotalSubEtapa_TopUp": {
+          "filter": {
+            "term": {
+              "subProductoOferta": "{{subProducto2}}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
