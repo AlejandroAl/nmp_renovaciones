@@ -1,5 +1,6 @@
 PUT http://{{ElasticURL}}/{{IndiceRenovTopUp}}
 
+PUT renovacionestopup_test
 {
   "mappings": {
     "prospeccion": {
@@ -1327,14 +1328,6 @@ PUT http://{{ElasticURL}}/{{IndiceRenovTopUp}}
             }
           }
         },
-        "moratorio_contrato": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
-          }
-        },
         "fecha_desembolso_contrato": {
           "type": "date",
           "format": "date_optional_time"
@@ -1345,7 +1338,91 @@ PUT http://{{ElasticURL}}/{{IndiceRenovTopUp}}
         },
         "folio_oferta": {
           "type": "long"
-        }
+        },
+        "SAP_plazo":{
+          "type": "long"
+        },
+        "SAP_monto":{
+        	"type": "long"
+        },
+        "SAP_numeroPagos":{
+        	"type": "long"
+        },
+        "SAP_tasa":{
+        	"type": "long"
+        },
+        "sociedad_contrato":{
+        	"type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+      	},
+      	"frecuencia_contrato":{
+      		"type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+      	},
+      	"partner_contrato":{
+      		"type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+      	},
+      	"origen_contrato":{
+      		"type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+      	},
+      	"promotor_contrato":{
+      		"type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+      	},
+      	"destino_contrato":{
+      		"type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+      	},
+      	"producto_contrato": {
+           "type": "text",
+           "fields": {
+             "keyword": {
+               "type": "keyword",
+               "ignore_above": 256
+             }
+           }
+         },
+         "subproducto_contrato": {
+           "type": "text",
+           "fields": {
+             "keyword": {
+               "type": "keyword",
+               "ignore_above": 256
+             }
+           }
+         }
       }
     }
   }
