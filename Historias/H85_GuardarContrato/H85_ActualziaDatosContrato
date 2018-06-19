@@ -1,0 +1,33 @@
+POST renovacionestopup_test/prospeccion/{{_id}}/_update?_source=subetapa_cliente,seguimientoCartera,pantalla_cliente,numero_solicitud,numeroContrato,nombre_lista_marketing,macroproceso_cliente,idProspeccion,idCliente,id_campania,folio_movilidad,folio_BPM,fecha_ultima_gestion_cliente,etapa_cliente,estatus_seguimientoCartera,estatus_cliente,SAP_subestatus_cliente,SAP_estatus_cliente
+{
+  "doc": {
+           "SAP_plazo":"",
+           "SAP_monto":122.00,
+           "SAP_numeroPagos":3,
+           "SAP_tasa":12312,
+           "sociedad_contrato":"contrato",
+           "frecuencia_contrato":"frecuencia",
+           "partner_contrato":"partner",
+           "origen_contrato":"origenContrato",
+           "promotor_contrato":"promotor",
+           "destino_contrato":"destino",
+           "fecha_numero_solicitud":"2018-04-03T13:42:20.760",
+           "tipo_pago_contrato":"value",
+           "fecha_desembolso_contrato":"2018-04-03T13:42:20.760",
+           "sucursal_contrato":"value",
+           "macroproceso_cliente": "value4",
+            "etapa_cliente":"value3",
+            "subetapa_cliente":"value1",
+            "pantalla_cliente":"value2",
+            "folio_BPM":12,
+            "folio_movilidad":4,
+            "numero_solicitud": 1,
+            "estatus_cliente": "value4",
+            "numeroContrato": 3426,
+            "fecha_ultima_gestion_cliente": "2017-05-03T13:42:20.760",
+            "seguimientoCartera":"1",
+            "estatus_seguimientoCartera":"1",
+            "producto_contrato":"productoContrato",
+            "subproducto_contrato":"subproductoContrato"
+   }
+}
