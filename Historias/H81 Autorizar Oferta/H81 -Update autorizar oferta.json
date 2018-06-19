@@ -1,0 +1,7 @@
+POST http://{{ElasticURL}}/{{IndiceRenovTopUp}}/prospeccion/ls-ZEGQBlC_EbcKFIU7Q/_update?pretty
+
+{
+  "doc": {
+  "autoriza_oferta":true
+  }  
+}
