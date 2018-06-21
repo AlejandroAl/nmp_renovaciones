@@ -1,9 +1,9 @@
 POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?&pretty
 
 {
-  "id": "H20_ObtenerTelefonos",
+  "id": "H86_consultar_contrato",
   "params": {
-    "id_Cliente": 229,
+    "id_Cliente":"29",
     "id_campania": "1"
   }
 }

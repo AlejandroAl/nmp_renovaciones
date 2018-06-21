@@ -1,0 +1,99 @@
+POST https://{{ElasticURL}}/_scripts/H86_consultar_contrato
+
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "idCliente": "{{id_Cliente}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "id_campania": "{{id_campania}}"
+                    }
+                  },
+                  {
+                    "match": {
+                      "flag_prospecto": true
+                    }
+                    
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "script_fields": {
+      	"contratoAnterior": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['contrato'].value"
+          }
+        },
+        "contratoNuevo": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['numeroContrato'].value"
+          }
+        },
+        "estatusCliente": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['estatus_cliente.keyword'].value"
+          }
+        },
+        "producto": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['producto_contrato.keyword'].value"
+          }
+        },
+        "subproducto": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['subproducto_contrato.keyword'].value"
+          }
+        },
+        "monto": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_monto'].value"
+          }
+        },
+        "numeroPagos": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_numeroPagos'].value"
+          }
+        },
+        "tasa": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_tasa'].value"
+          }
+        },
+        "estatusContrato": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['SAP_estatus_cliente.keyword'].value"
+          }
+        },
+        "numeroSolicitud": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['numero_solicitud'].value"
+          }
+        }
+      }
+    }
+  }
+}

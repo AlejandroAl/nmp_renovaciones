@@ -8,29 +8,6 @@ POST https://{{ElasticURL}}/_scripts/H9_DatosCliente_xID
         "bool": {
           "must": [
             {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "SAP_estatus_cliente": 37
-                    }
-                  }
-                ],
-                "must_not": [
-                  {
-                    "match": {
-                      "SAP_subestatus_cliente": {
-                        "query": "(40) OR (41)"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-           {
-              "bool": {
-                "must": [
-                  {
                     "match": {
                       "idCliente": "{{id_cliente}}"
                     }
@@ -39,12 +16,14 @@ POST https://{{ElasticURL}}/_scripts/H9_DatosCliente_xID
                     "match": {
                       "id_campania": "{{id_campania}}"
                     }
+                  },
+                  {
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
                   }
                 ]
               }
-            }
-          ]
-        }
       },
       "script_fields": {
         "Nombre": {

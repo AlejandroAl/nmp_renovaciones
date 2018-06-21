@@ -1,4 +1,4 @@
-POST https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos_SAP
+POST https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos
 {
   "script": {
     "lang": "mustache",
@@ -7,29 +7,6 @@ POST https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos_SAP
         "bool": {
           "must": [
             {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "SAP_estatus_cliente": 37
-                    }
-                  }
-                ],
-                "must_not": [
-                  {
-                    "match": {
-                      "SAP_subestatus_cliente": {
-                        "query": "(40) OR (41)"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "bool": {
-                "must": [
-                  {
                     "match": {
                       "idCliente": "{{id_Cliente}}"
                     }
@@ -38,12 +15,14 @@ POST https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos_SAP
                     "match": {
                       "id_campania": "{{id_campania}}"
                     }
+                  },
+                  {
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
                   }
                 ]
               }
-            }
-          ]
-        }
       },
       "script_fields": {
         "SAP_telefono1": {
@@ -56,6 +35,36 @@ POST https://{{ElasticURL}}/_scripts/H20_ObtenerTelefonos_SAP
           "script": {
             "lang": "painless",
             "source": "doc['SAP_telefono_2.keyword'].value"
+          }
+        },
+        "CRM_telefono_1": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['CRM_telefono_1.keyword'].value"
+          }
+        },
+        "CRM_telefono_2": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['CRM_telefono_2.keyword'].value"
+          }
+        },
+        "CRM_telefono_3": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['CRM_telefono_3.keyword'].value"
+          }
+        },
+        "CRM_telefono_4": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['CRM_telefono_4.keyword'].value"
+          }
+        },
+        "CRM_telefono_5": {
+          "script": {
+            "lang": "painless",
+            "source": "doc['CRM_telefono_5.keyword'].value"
           }
         }
       }

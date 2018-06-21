@@ -10,28 +10,10 @@ POST https://{{ElasticURL}}/_scripts/Etapa_ListaMarketing
         "bool": {
           "must": [
             {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "SAP_estatus_cliente": 37
-                    }
-                  }
-                ],
-                "must_not": [
-                  {
-                    "match": {
-                      "SAP_subestatus_cliente": {
-                        "query": "(40) OR (41)"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "bool": {
-                "must": [
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
+                  },
                   {
                     "match": {
                       "estatus_carga": 1
@@ -44,9 +26,7 @@ POST https://{{ElasticURL}}/_scripts/Etapa_ListaMarketing
                   }
                 ]
               }
-            }
-          ]
-        }
+
       },
       "aggs": {
         "Clientes": {

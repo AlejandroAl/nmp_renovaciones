@@ -1,0 +1,32 @@
+POST https://{{ElasticURL}}/_scripts/H47_ids_clientes
+
+{
+ "script":
+ {
+	"lang": "mustache",
+	"source":{ 
+		
+   "stored_fields":"_id",
+   "_source":[
+      "idCliente",
+      "id_campania"
+   ],
+   "query":{
+               "bool":{
+                  "must":[
+                     {
+                        "match":{
+                           "idCliente":"{{idcliente}}"
+                        }
+                     },
+                     {
+                        "match":{
+                           "id_campania":"{{idcampania}}"
+                        }
+                     }
+                  ]
+               }
+            }
+        }
+   }
+}

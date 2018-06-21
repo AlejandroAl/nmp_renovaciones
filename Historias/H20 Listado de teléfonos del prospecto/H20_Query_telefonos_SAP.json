@@ -1,9 +1,9 @@
 POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?&pretty
 
 {
-  "id": "H20_ObtenerTelefonos",
+  "id": "H20_ObtenerTelefonos_SAP",
   "params": {
-    "id_Cliente": 229,
+    "id_Cliente": 26,
     "id_campania": "1"
   }
 }

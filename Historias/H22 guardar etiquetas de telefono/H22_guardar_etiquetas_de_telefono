@@ -1,3 +1,5 @@
+POST https://{{ElasticURL}}/_scripts/H22_guardar_etiquetas_de_telefono
+
 {
   
   "script": {
@@ -24,7 +26,6 @@
                   }
                 ]
               }
-
       }
     }
   }

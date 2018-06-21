@@ -10,28 +10,10 @@ POST https://{{ElasticURL}}/_scripts/H21_IDs_nuevoTelefonos
         "bool": {
           "must": [
             {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "SAP_estatus_cliente": 37
-                    }
-                  }
-                ],
-                "must_not": [
-                  {
-                    "match": {
-                      "SAP_subestatus_cliente": {
-                        "query": "(40) OR (41)"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "bool": {
-                "must": [
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
+                  },
                   {
                     "match": {
                       "idCliente": "{{idcliente}}"
@@ -44,9 +26,6 @@ POST https://{{ElasticURL}}/_scripts/H21_IDs_nuevoTelefonos
                   }
                 ]
               }
-            }
-          ]
-        }
       }
     }
   }

@@ -19,9 +19,9 @@ GET _scripts/H23_IDs_renovaciones_idCl_idCam
                     }
                   },
                   {
-                    "match": {
-                      "flag_prospecto": true
-                      }
+                  	"match": {
+                  		"flag_prospecto": true
+                  		}
                   }
                 ]
               }

@@ -1,3 +1,5 @@
+POST https://{{ElasticURL}}/_scripts/etapa_lista_marketing_paso_1
+
 {
   "script": {
     "lang": "mustache",

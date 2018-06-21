@@ -9,54 +9,33 @@ GET https://{{ElasticURL}}/_scripts/paso2_filtradoCliente_marketing
         "bool": {
           "must": [
             {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "SAP_estatus_cliente": 37
-                    }
-                  }
-                ],
-                "must_not": [
-                  {
-                    "match": {
-                      "SAP_subestatus_cliente": {
-                        "query": "(40) OR (41)"
-                      }
-                    }
-                  }
-                ]
+              "match": {
+                "flag_prospecto": true
               }
             },
             {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "SAP_codigoPostalDomicilio": "{{SAP_codigoPostalDomicilio}}"
-                    }
-                  },
-                  {
-                    "match": {
-                      "contrato": "{{contrato}}"
-                    }
-                  },
-                  {
-                    "match": {
-                      "SAP_telefono_1": "{{SAP_telefono_1}}"
-                    }
-                  },
-                  {
-                    "match": {
-                      "SAP_telefono_2": "{{SAP_telefono_2}}"
-                    }
-                  },
-                  {
-                    "match": {
-                      "telefonos_actualizados": "{{telefonos_actualizados}}"
-                    }
-                  }
-                ]
+              "match": {
+                "SAP_codigoPostalDomicilio": "{{SAP_codigoPostalDomicilio}}"
+              }
+            },
+            {
+              "match": {
+                "contrato": "{{contrato}}"
+              }
+            },
+            {
+              "match": {
+                "SAP_telefono_1": "{{SAP_telefono_1}}"
+              }
+            },
+            {
+              "match": {
+                "SAP_telefono_2": "{{SAP_telefono_2}}"
+              }
+            },
+            {
+              "match": {
+                "telefonos_actualizados": "{{telefonos_actualizados}}"
               }
             }
           ]

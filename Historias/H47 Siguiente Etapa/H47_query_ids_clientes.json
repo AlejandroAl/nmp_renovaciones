@@ -1,0 +1,9 @@
+POST https://{{ElasticURL}}/{{IndiceRenovTopUp}}/_search/template?&pretty
+
+{
+  "id":"H47_ids_clientes",
+  "params":{
+   "idcliente":30,
+   "idcampania":"1"
+  }
+}
