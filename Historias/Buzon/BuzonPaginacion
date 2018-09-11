@@ -1,0 +1,66 @@
+PUT _scripts/Buzon
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "_source": [
+        "fecha_ultima_gestion_cliente",
+        "fecha_prospeccion",
+        "idCliente",
+        "riesgos_producto",
+        "riesgos_subProducto",
+        "folio_oferta",
+        "folio_movilidad",
+        "fecha_nacimiento_cliente",
+        "SAP_nombre_cliente_1",
+        "SAP_nombre_cliente_2",
+        "SAP_apellidoPaterno_cliente",
+        "SAP_apellidoMaterno_cliente",
+        "etapa_cliente",
+        "subetapa_cliente",
+        "estatus_cliente",
+        "id_campania",
+        "fecha_ultima_gestion_cliente"
+      ],
+      "from": "{{desdeNumeroResgistro}}{{^desdeNumeroResgistro}}0{{/desdeNumeroResgistro}}",
+      "size": "{{registrosPorPagina}}{{^registrosPorPagina}}15{{/registrosPorPagina}}",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "query_string": {
+                "query": "{{parametros}}{{^parametros}}(flag_prospecto:false OR flag_prospecto:true){{/parametros}}",
+                "default_operator": "AND"
+              }
+            },
+            {
+              "bool": {
+                "should": [
+                  {
+                    "range": {
+                      "fecha_ultima_gestion_cliente": {
+                        "gte": "{{fecha_ultima_gestion_inicio}}{{^fecha_ultima_gestion_inicio}}1900{{/fecha_ultima_gestion_inicio}}",
+                        "lte": "{{fecha_ultima_gestion_fin}}{{^fecha_ultima_gestion_fin}}1900{{/fecha_ultima_gestion_fin}}",
+                        "format": "dd/MM/yyyy||yyyy"
+                      }
+                    }
+                  },
+                  {
+                    "range": {
+                      "fecha_prospeccion": {
+                        "gte": "{{fecha_prospeccion_inicio}}{{^fecha_prospeccion_inicio}}1900{{/fecha_prospeccion_inicio}}",
+                        "lte": "{{fecha_prospeccion_fin}}{{^fecha_prospeccion_fin}}1900{{/fecha_prospeccion_fin}}",
+                        "format": "dd/MM/yyyy||yyyy"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
