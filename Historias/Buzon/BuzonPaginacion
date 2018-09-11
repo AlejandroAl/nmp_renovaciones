@@ -20,7 +20,7 @@ PUT _scripts/Buzon
         "subetapa_cliente",
         "estatus_cliente",
         "id_campania",
-        "fecha_ultima_gestion_cliente"
+        "estatus_campania"
       ],
       "from": "{{desdeNumeroResgistro}}{{^desdeNumeroResgistro}}0{{/desdeNumeroResgistro}}",
       "size": "{{registrosPorPagina}}{{^registrosPorPagina}}15{{/registrosPorPagina}}",
@@ -59,8 +59,14 @@ PUT _scripts/Buzon
             }
           ]
         }
+      },
+      "aggs": {
+    "Total_registros": {
+      "value_count": {
+        "field": "idCliente"
       }
     }
   }
+    }
+  }
 }
-
