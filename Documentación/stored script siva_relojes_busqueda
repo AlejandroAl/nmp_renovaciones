@@ -1,0 +1,88 @@
+POST _scripts/siva_relojes_busqueda
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "query_string": {
+                "query": "{{parametros}}{{^parametros}}{{/parametros}}",
+                "default_operator": "OR"
+              }
+            },
+            {
+              "match": {
+                "marca_reloj.keyword": "{{marca_reloj}}"
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "Resultados_busqueda": {
+          "value_count": {
+            "field": "id_reloj.keyword"
+          }
+        },
+        "totalGrupos": {
+          "cardinality": {
+            "field": "referencia_reloj.keyword",
+            "precision_threshold": 100
+          }
+        },
+        "by_referencia": {
+          "terms": {
+            "field": "referencia_reloj.keyword",
+            "order": {
+              "_term": "desc"
+            },
+            "size": 1000
+          },
+          "aggs": {
+            "by_top_hit": {
+              "top_hits": {
+                "size": 1000,
+                "_source": [
+                  "id_reloj",
+                  "anioFabricacion_reloj",
+                  "codigo_reloj",
+                  "estado_reloj",
+                  "fecha_modificacion",
+                  "genero_reloj",
+                  "modelo_linea_reloj",
+                  "marca_reloj",
+                  "material_caja",
+                  "material_correa",
+                  "material_cristal",
+                  "pagina_reloj",
+                  "precio_auxiliar",
+                  "referencia_reloj",
+                  "precio_reloj",
+                  "tipo_cuerda",
+                  "titulo_reloj",
+                  "ubicacionImagen_reloj"
+                ],
+                "sort": [
+                  {
+                    "marca_reloj.keyword": "asc"
+                  },
+                  {
+                    "modelo_linea_reloj.keyword": "asc"
+                  },
+                  "_score"
+                ]
+              }
+            },
+            "promedio_precios": {
+              "avg": {
+                "field": "precio_reloj"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
